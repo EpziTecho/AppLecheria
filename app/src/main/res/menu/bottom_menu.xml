@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/home"
+        android:title="Inicio"
+        android:icon="@drawable/ic_home"/>
+
+    <item
+        android:id="@+id/Ubicanos"
+        android:title="Ubícanos"
+        android:icon="@drawable/baseline_location_on_24"
+        />
+
+    <!--<item
+        android:title=""/>-->
+
+    <item
+        android:id="@+id/Promos"
+        android:title="Promos"
+        android:icon="@drawable/baseline_star_24" />
+
+
+</menu>

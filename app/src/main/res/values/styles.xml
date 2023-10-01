@@ -1,0 +1,22 @@
+<resources>
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="colorPrimary">@color/design_default_color_primary</item>
+        <item name="colorPrimaryDark">@color/design_default_color_primary_dark</item>
+        <item name="colorAccent">@color/grey</item>
+    </style>
+    <style name="RoundedImageViewRounded">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+
+    </style>
+    <style name="RoundedImageViewProd">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">15%</item>
+
+    </style>
+    <style name="RoundedImageViewRoundedProd">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">6%</item>
+
+    </style>
+</resources>

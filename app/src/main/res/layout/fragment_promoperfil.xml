@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:layout_marginLeft="0dp"
+    android:layout_marginBottom="70dp"
+    android:layerType="none"
+    tools:context=".Vista.PrincipalView.MainActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#ffff"
+        android:backgroundTint="#FFFFFF">
+
+        <LinearLayout
+            android:id="@+id/producto_destacado"
+            android:layout_width="383dp"
+            android:layout_height="224dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="0dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/PromSectionTitle"
+                android:layout_width="match_parent"
+                android:layout_height="38dp"
+                android:text="Detalle de producto"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="174dp"
+                android:layout_marginBottom="128dp"
+                android:elevation="2dp"
+                android:gravity="center"
+                android:paddingTop="10dp">
+
+                <ImageView
+                    android:layout_width="134dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="0dp"
+                    android:scaleType="centerCrop"
+                    app:srcCompat="@drawable/image_8" />
+
+                <LinearLayout
+                    android:layout_width="206dp"
+                    android:layout_height="106dp"
+                    android:layout_marginStart="18dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:paddingTop="10dp"
+                        android:paddingBottom="4dp"
+                        android:text="Choco trio 3x1"
+                        android:textColor="@color/grey"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/producto_precio"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:paddingBottom="4dp"
+                        android:text="Precio: S/.20.00"
+                        android:textColor="@color/black"
+                        android:textSize="10sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/producto_descripcion"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:text="LLevate 3 tazas por el precio de 1, hecha de pura leche de nuestras vacas"
+                        android:textAlignment="viewStart"
+                        android:textColor="@color/black"
+                        android:textSize="12sp" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="245dp"
+            android:layout_below="@id/producto_destacado"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="44dp"
+            android:orientation="horizontal">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="18dp"
+                android:layout_height="185dp"
+                android:layout_margin="10dp"
+                android:layout_weight="1">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:minWidth="111dp"
+                    android:minHeight="161dp"
+                    android:orientation="vertical"
+                    android:padding="6dp"
+                    tools:autofillHints="s">
+
+                    <ImageView
+                        android:layout_width="109dp"
+                        android:layout_height="100dp"
+                        android:scaleType="centerInside"
+                        app:srcCompat="@drawable/image_11" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="8dp"
+                        android:text="Manjar lechero"
+                        android:textAlignment="center"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="4dp"
+                        android:text="365 cal / porcion"
+                        android:textAlignment="center"
+                        android:textColor="@color/grey"
+                        android:textSize="10sp" />
+
+                    <TextView
+                        android:layout_width="110dp"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="4dp"
+                        android:text="Ver mas"
+                        android:textAlignment="center"
+                        android:textAllCaps="false"
+                        android:textColor="@color/purple"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+                <!-- Información del primer producto relacionado -->
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="18dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_weight="1">
+
+                <!-- Información del segundo producto relacionado -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="6dp">
+
+                    <ImageView
+                        android:layout_width="111dp"
+                        android:layout_height="100dp"
+                        android:scaleType="centerInside"
+                        app:srcCompat="@drawable/image12" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="8dp"
+                        android:text="Leche de vaca"
+                        android:textAlignment="center"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="4dp"
+                        android:text="365 cal / porcion"
+                        android:textAlignment="center"
+                        android:textColor="@color/black"
+                        android:textSize="10sp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="4dp"
+                        android:text="Ver mas"
+                        android:textAlignment="center"
+                        android:textColor="@color/purple"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="0dp"
+                android:layout_height="185dp"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:visibility="visible"
+                app:cardBackgroundColor="@color/white"
+                app:cardElevation="0dp"
+                app:cardMaxElevation="0dp"
+                app:cardPreventCornerOverlap="false"
+                app:cardUseCompatPadding="false">
+
+                <!-- Información del tercer producto relacionado -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="185dp"
+                    android:fadingEdge="horizontal"
+                    android:foregroundTint="#FFFFFF"
+                    android:orientation="vertical"
+                    android:padding="6dp"
+                    android:visibility="visible">
+
+                    <ImageView
+                        android:layout_width="99dp"
+                        android:layout_height="77dp"
+                        android:scaleType="center"
+                        app:srcCompat="@drawable/group_31" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="4dp"
+                        android:text="Ver productos"
+                        android:textAlignment="center"
+                        android:textAllCaps="false"
+                        android:textColor="@color/grey"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btn_quiero_promo"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="24dp"
+            android:background="@color/purple_200"
+            android:backgroundTint="#FFFFFF"
+            android:padding="8dp"
+            android:text="Quiero esta promo"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textColor="#FFFFFF"
+            android:textSize="14sp"
+            app:cornerRadius="6dp"
+            app:iconTint="#0B0B0B" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
+            android:layout_height="27dp"
+            android:layout_above="@+id/PromSectionTitle"
+            android:layout_below="@+id/producto_destacado"
+            android:layout_marginTop="9dp"
+            android:layout_marginBottom="326dp"
+            android:paddingLeft="14dp"
+            android:text="Ingredientes"
+            android:textAlignment="viewStart"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

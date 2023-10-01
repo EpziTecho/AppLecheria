@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_IniciarSesion"
+            android:icon="@drawable/baseline_login_24"
+            android:title="Iniciar Sesión" />
+
+        <item
+            android:id="@+id/nav_favoritos"
+            android:icon="@drawable/baseline_favorite_border_24"
+            android:title="Favoritos" />
+
+        <item
+            android:id="@+id/nav_promosperfil"
+            android:icon="@drawable/baseline_local_offer_24"
+            android:title="Ver Promos" />
+
+        <item
+            android:id="@+id/nav_gestionProductos"
+            android:icon="@drawable/ic_baseline_whatshot_24"
+            android:title="Gestionar Productos" />
+        <item
+            android:id="@+id/nav_infoEmpresa"
+            android:icon="@drawable/baseline_info_24"
+            android:title="Info/Nosotros" />
+    </group>
+    <group android:checkableBehavior="single">
+    <item
+        android:id="@+id/nav_logout"
+        android:icon="@drawable/baseline_login_24"
+        android:title="Cerrar Sesión"
+        android:orderInCategory="999" />
+    </group>
+</menu>

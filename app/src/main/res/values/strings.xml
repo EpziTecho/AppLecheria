@@ -1,0 +1,61 @@
+<resources>
+    <string name="app_name">La Lecheria App</string>
+    <string name="open_nav">Open Navigation Drawer</string>
+    <string name="close_nav">Close Navigation Drawer</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string-array name="left_spinner_estado">
+        <item>Disponible</item>
+        <item>No Disponible</item>
+        <item>En promocion</item>
+        <item>Eliminado</item>
+    </string-array>
+    <string-array name="left_spinner_items">
+        <item>Todas las sedes</item>
+        <item>Centro</item>
+        <item>SMP</item>
+        <item>Ate</item>
+        <item>Callao</item>
+    </string-array>
+    <string-array name="right_spinner_items">
+        <item>Todos los productos</item>
+        <item>Postres</item>
+        <item>Sandwiches</item>
+        <item>Snacks</item>
+        <item>Yogures</item>
+        <item>Bebidas</item>
+    </string-array>
+
+    <string-array name="left_spinner_sedes">
+        <item>Todas las sedes</item>
+        <item>Centro</item>
+        <item>SMP</item>
+        <item>Ate</item>
+        <item>Callao</item>
+    </string-array>
+    <string name="action_login">Iniciar sesión</string>
+
+    <string name="login_button">Iniciar sesión</string>
+    <string name="registro_button">Registrarse</string>
+    <string name="password_hint">Contraseña</string>
+    <string name="username_hint">Nombre de usuario</string>
+
+    <string name="notificaciones">Notificaciones</string>
+
+    <string name="API_KEY">AIzaSyAdRAjT_eSAfW_-drBtqP-l41oQERxO9T0</string>
+
+    <string name="titulo_direccion1">Sede Centro</string>
+    <string name="titulo_subdireccion1">Av. Arequipa 265, Lima 15046</string>
+    <string name="titulo_descripcion1">Al frente de la UTP Centro.</string>
+    <string name="titulo_direccion2">Sede SMP</string>
+    <string name="titulo_subdireccion2">Av. Alfredo Mendiola 7042, San Martín de Porres 15314</string>
+    <string name="titulo_descripcion2">Al costado de la Banco Central del Peru.</string>
+    <string name="titulo_direccion3">Sede Callao</string>
+    <string name="titulo_subdireccion3">Av. Argentina 3093, Callao 07001</string>
+    <string name="titulo_descripcion3">Entre el Tambo y el Inkarma.</string>
+    <string name="titulo_direccion4">Sede Ate</string>
+    <string name="titulo_subdireccion4">Av. Nicolás Ayllón con, Ate 15487</string>
+    <string name="titulo_descripcion4">Al frente del Real Plaza.</string>
+
+
+</resources>

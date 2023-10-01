@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "467759027421",
+    "project_id": "lalecheria",
+    "storage_bucket": "lalecheria.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:467759027421:android:aeccee98dd8d9139687734",
+        "android_client_info": {
+          "package_name": "com.example.lecheriaapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "467759027421-tm0b0q71g234k0ejhqnrntaq0uiqe484.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCJrf3Yx5Rw3ekGtuJD0jqkrYarSWW-Tpc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "467759027421-tm0b0q71g234k0ejhqnrntaq0uiqe484.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

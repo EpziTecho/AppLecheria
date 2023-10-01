@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginBottom="40dp"
+    >
+
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:layout_gravity="center"
+        android:layout_marginBottom="1dp">
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white">
+        <TextView
+            android:id="@+id/titleTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_medium"
+            android:padding="16dp"
+            android:text="Agregar Producto"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tituloEstado"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Estado" />
+        <Spinner
+            android:id="@+id/spinnerEstado"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="8dp"
+            android:background="@drawable/spinner_background"/>
+        <!-- foto del producto  -->
+        <TextView
+            android:id="@+id/tituloimagen"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Foto del producto"
+            android:layout_marginTop="9dp"/>
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/selectedImageView"
+            android:layout_width="wrap_content"
+            android:layout_height="120dp"
+            android:scaleType="centerInside"
+            app:srcCompat="@drawable/img_no_disponible"
+            android:layout_gravity="center"
+            app:shapeAppearanceOverlay="@style/RoundedImageViewRoundedProd"
+            app:strokeColor="@color/black"
+            app:strokeWidth="2dp"
+
+
+            />
+
+        <Button
+            android:id="@+id/selectImageButton"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Seleccionar imagen"
+
+            />
+        <TextView
+            android:id="@+id/titulonombre"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Nombre comercial" />
+
+        <EditText
+            android:id="@+id/textNombreProducto"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/text_background"/>
+
+        <TextView
+            android:id="@+id/titulocalorias"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Calorias" />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/textCalorias"
+            android:background="@drawable/text_background"/>
+
+        <TextView
+            android:id="@+id/tituloPrecio"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Precio"
+            android:inputType="number"/>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/textPrecio"
+            android:background="@drawable/text_background"
+            android:inputType="number"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+
+            android:orientation="horizontal">
+            <!-- Spinner Sede  -->
+            <!--<TextView
+                android:id="@+id/titulodisponibilidad"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Disponibilidad en sedes" />-->
+            <Spinner
+                android:id="@+id/spinnerDisponibilidad"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/spinner_background"
+                />
+            <!-- Spinner Categoria  -->
+            <!--<TextView
+                android:id="@+id/titulocategoria"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Categoria" />-->
+            <Spinner
+                android:id="@+id/spinnerCategoria"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:background="@drawable/spinner_background"
+
+                />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tituloAgregarIngredientes"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Descripción"
+            />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/textIngredientes"
+            android:background="@drawable/text_background"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal"
+
+            >
+            <Button
+                android:id="@+id/btnAgregar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Agregar"
+                android:layout_marginRight="8dp"
+
+                />
+            <Button
+                android:id="@+id/btnCancelar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cancelar"
+                android:layout_marginRight="8dp"/>
+        </LinearLayout>
+        </LinearLayout>
+        </ScrollView>
+
+
+
+
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+</com.google.android.material.card.MaterialCardView>

@@ -22,6 +22,7 @@ import androidx.fragment.app.FragmentTransaction;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 import com.bumptech.glide.request.RequestOptions;
+import com.example.lecheriaapp.Vista.CarritoDeReservasView.CarritoDeReservaFragment;
 import com.example.lecheriaapp.Vista.FavoritosUsuarioView.FavoritosUsuarioFragment;
 import com.example.lecheriaapp.Vista.HomeView.HomeFragment;
 import com.example.lecheriaapp.Modelo.UserModel;
@@ -30,6 +31,7 @@ import com.example.lecheriaapp.Vista.InfoEmpresa.InfoEmpresaFragment;
 import com.example.lecheriaapp.Vista.PromocionesView.PromocionesFragment;
 import com.example.lecheriaapp.R;
 import com.example.lecheriaapp.Vista.GestionProductosView.GestionProductosFragment;
+import com.example.lecheriaapp.Vista.ReservasUsuariosView.ReservasUsuariosFragment;
 import com.example.lecheriaapp.Vista.UbicanosView.UbicanosFragment;
 import com.example.lecheriaapp.databinding.ActivityMainBinding;
 import com.example.lecheriaapp.Vista.LoginView.LoginFragment;
@@ -102,6 +104,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         MenuItem gestionProductosItem = navMenu.findItem(R.id.nav_gestionProductos);
         MenuItem gestionProductosItemOculto1 = navMenu.findItem(R.id.nav_favoritos);
         MenuItem gestionProductosItemOculto2 = navMenu.findItem(R.id.nav_promosperfil);
+
         mAuth = FirebaseAuth.getInstance();
 
         if (mAuth.getCurrentUser() != null) {
@@ -216,6 +219,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.nav_infoEmpresa:
                 replaceFragment(new InfoEmpresaFragment());
                 break;
+            case R.id.nav_reservas:
+                replaceFragment(new ReservasUsuariosFragment());
+                break;
 
             case R.id.nav_logout:
                 // Cerrar la sesión actual y redirigir a la actividad de inicio de sesión con un mensaje de despedida,
@@ -241,7 +247,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
 
-    // Boton de Notificaciones
+    // Boton de Notificaciones, ahora de carrito de reservas
     private boolean seHaHechoClicEnNotificaciones = false;
 
     @Override
@@ -253,12 +259,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        if (id == R.id.notificaciones) {
-            // Aquí manejas el clic en el botón de notificaciones
-            ObtenerUsuarioRol(); // Obtener el rol del usuario
-            seHaHechoClicEnNotificaciones = true; // Se establece la variable en verdadero
-            // Cambiar el color del botón de notificaciones
-            item.setIcon(R.drawable.baseline_notifications_none_24);
+        if (id == R.id.carritoDeReserva) {
+            // Reemplaza CarritoDeReservaFragment con el fragmento deseado
+            replaceFragment(new CarritoDeReservaFragment());
             return true;
         }
         return super.onOptionsItemSelected(item);

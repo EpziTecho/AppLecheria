@@ -3,6 +3,7 @@ package com.example.lecheriaapp.Adaptadores;
 import android.content.Context;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,6 +44,7 @@ public class RecyclerProductoAdapter extends RecyclerView.Adapter<RecyclerProduc
     private ArrayList<ProductoModel> arrayListProductos;
     private DatabaseReference mDatabase;
     private FavoritosUpdateListener favoritosUpdateListener;
+    private static final String TAG = "ReservarProductosUsuario"; // Etiqueta para las impresiones de log
 
     public RecyclerProductoAdapter(Context mcontext, int layoutResource, ArrayList<ProductoModel> arrayListProductos) {
         this.mcontext = mcontext;
@@ -127,15 +129,15 @@ public class RecyclerProductoAdapter extends RecyclerView.Adapter<RecyclerProduc
                         // Estás en el fragmento PromocionesFragment
                         // Abrir fragmento de detalles del producto para PromocionesFragment
                         Bundle args = new Bundle();
-                        args.putString("nombre", productoModel.getNombre());
-                        args.putString("precio", productoModel.getPrecio());
-                        args.putString("estado", productoModel.getEstado());
-                        args.putString("caloria", productoModel.getCaloria());
-                        args.putString("ingredientes", productoModel.getIngredientes());
-                        args.putString("disponibilidad", productoModel.getDisponibilidad());
-                        args.putString("categoria", productoModel.getCategoria());
-                        args.putString("imageUrl", productoModel.getImageUrl());
-                        args.putString("codigoQR", productoModel.getCodigoQR());
+                            args.putString("nombre", productoModel.getNombre());
+                            args.putString("caloria", productoModel.getCaloria());
+                            args.putString("precio", productoModel.getPrecio());
+                            args.putString("estado", productoModel.getEstado());
+                            args.putString("ingredientes", productoModel.getIngredientes());
+                            args.putString("disponibilidad", productoModel.getDisponibilidad());
+                            args.putString("categoria", productoModel.getCategoria());
+                            args.putString("imageUrl", productoModel.getImageUrl());
+                            args.putString("codigoQR", productoModel.getCodigoQR());
                         DetallesProductoPromocionesFragment detallesProductoFragment = new DetallesProductoPromocionesFragment();
                         detallesProductoFragment.setArguments(args);
                         FragmentManager fragmentManager = ((FragmentActivity) mcontext).getSupportFragmentManager();
@@ -150,13 +152,16 @@ public class RecyclerProductoAdapter extends RecyclerView.Adapter<RecyclerProduc
                         // Abrir fragmento de detalles del producto para otros fragmentos
                         Bundle args = new Bundle();
                         args.putString("nombre", productoModel.getNombre());
+                        args.putString("caloria", productoModel.getCaloria());
                         args.putString("precio", productoModel.getPrecio());
                         args.putString("estado", productoModel.getEstado());
-                        args.putString("caloria", productoModel.getCaloria());
                         args.putString("ingredientes", productoModel.getIngredientes());
                         args.putString("disponibilidad", productoModel.getDisponibilidad());
                         args.putString("categoria", productoModel.getCategoria());
                         args.putString("imageUrl", productoModel.getImageUrl());
+                        args.putString("codigoQR", productoModel.getCodigoQR());
+                        Log.d(TAG, "Producto recibido: " + productoModel.getCodigoQR());
+
                         DetallesProductoFragment detallesProductoFragment = new DetallesProductoFragment();
                         detallesProductoFragment.setArguments(args);
                         FragmentManager fragmentManager = ((FragmentActivity) mcontext).getSupportFragmentManager();

@@ -1,5 +1,7 @@
 # Proyecto de Gestión de Productos para La Lechería
 
+Este proyecto forma parte de la evaluación del curso de Integrador 2, correspondiente al noveno ciclo de la carrera de Ingeniería de Software en la Universidad Tecnológica del Perú.
+
 ## Introducción
 
 La Lechería es una reconocida cafetería con más de medio siglo de experiencia en la producción de productos lácteos artesanales. Actualmente, están expandiendo su presencia en Lima y se han enfrentado a un desafío común: la falta de disponibilidad de productos en sus tiendas. Según una encuesta, el 40% de los clientes ha tenido dificultades para encontrar los productos deseados debido a problemas de stock. Para abordar este problema y mejorar la experiencia del cliente, se propone la creación de una aplicación móvil multifuncional.

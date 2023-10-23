@@ -28,13 +28,13 @@ public class DetallesProductoFragment extends Fragment {
 
         // Obtener referencias a las vistas del diseño
         TextView nombreTextView = rootView.findViewById(R.id.producto_nombre);
+        TextView caloriasTextView = rootView.findViewById(R.id.producto_calorias);
         TextView precioTextView = rootView.findViewById(R.id.producto_precio);
         TextView estadoTextView = rootView.findViewById(R.id.producto_estado);
-        TextView ingredientesTextView = rootView.findViewById(R.id.producto_ingredientes);
-        TextView caloriasTextView = rootView.findViewById(R.id.producto_calorias);
         TextView disponibilidadTextView = rootView.findViewById(R.id.producto_disponibilidad);
-        TextView categoriaTextView = rootView.findViewById(R.id.producto_categoria);
+        TextView ingredientesTextView = rootView.findViewById(R.id.producto_ingredientes);
         ImageView imagenImageView = rootView.findViewById(R.id.producto_imagen);
+        TextView categoriaTextView = rootView.findViewById(R.id.producto_categoria);
         Button botonFavorito = rootView.findViewById(R.id.btn_favorito);
 
         // Obtener los argumentos pasados al fragmento
@@ -51,8 +51,12 @@ public class DetallesProductoFragment extends Fragment {
             String codigoQR = args.getString("codigoQR");
 
 
-            // Crea un objeto ProductoModel con los datos del producto
-            producto = new ProductoModel(nombre, precio, estado, ingredientes, calorias, disponibilidad, categoria, imageUrl, codigoQR);
+            // Crea un objeto ProductoModel con los datos del producto ordenados alfabéticamente y de forma descendente
+
+            producto= new ProductoModel(getArguments().getString("nombre"),getArguments().getString("caloria"),getArguments().getString("precio"),getArguments().getString("estado"),getArguments().getString("disponibilidad"),getArguments().getString("ingredientes"),getArguments().getString("imageUrl"),getArguments().getString("categoria"),getArguments().getString("codigoQR"));
+
+
+
             Log.d(TAG, "Producto recibido: " + producto.getCodigoQR());
             Log.d(TAG, "Reservando producto"+ producto.getNombre());
             Log.d(TAG, "Reservando producto"+ producto.getPrecio());
@@ -79,7 +83,6 @@ public class DetallesProductoFragment extends Fragment {
             public void onClick(View v) {
                 // Llama a la función para reservar el producto con el objeto ProductoModel
 
-                Log.d(TAG, "Producto recibido: " + producto.getCodigoQR());
                 reservarProductosUsuario.reservarProducto(producto);
             }
         });
@@ -87,17 +90,4 @@ public class DetallesProductoFragment extends Fragment {
         return rootView;
     }
 
-    private void mostrarDatosProducto(String nombre, String precio, String estado,
-                                      String ingredientes, String calorias,
-                                      String disponibilidad, String categoria) {
-        String mensaje = "Nombre: " + nombre + "\n" +
-                "Precio: " + precio + "\n" +
-                "Estado: " + estado + "\n" +
-                "Ingredientes: " + ingredientes + "\n" +
-                "Calorías: " + calorias + "\n" +
-                "Disponibilidad: " + disponibilidad + "\n" +
-                "Categoría: " + categoria;
-
-        Toast.makeText(requireContext(), mensaje, Toast.LENGTH_LONG).show();
-    }
 }

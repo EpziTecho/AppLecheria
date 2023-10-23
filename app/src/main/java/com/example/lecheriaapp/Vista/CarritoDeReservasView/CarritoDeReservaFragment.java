@@ -1,66 +1,70 @@
 package com.example.lecheriaapp.Vista.CarritoDeReservasView;
 
 import android.os.Bundle;
-
 import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import com.example.lecheriaapp.Adaptadores.ProductosReservadosAdapter;
+import com.example.lecheriaapp.Modelo.ProductoModel;
+import com.example.lecheriaapp.Presentador.CarritoReservaPresenter.CarritoReservaUsuarioPresenter;
 import com.example.lecheriaapp.R;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link CarritoDeReservaFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import java.util.ArrayList;
+import java.util.List;
+
 public class CarritoDeReservaFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private RecyclerView recyclerView;
+    private ProductosReservadosAdapter productosAdapter;
 
     public CarritoDeReservaFragment() {
-        // Required empty public constructor
+        // Constructor vacío
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment CarritoDeReservaFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static CarritoDeReservaFragment newInstance(String param1, String param2) {
-        CarritoDeReservaFragment fragment = new CarritoDeReservaFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
+    public static CarritoDeReservaFragment newInstance() {
+        return new CarritoDeReservaFragment();
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_carrito_de_reserva, container, false);
+        recyclerView = view.findViewById(R.id.recyclerViewProductosReservados); // Asigna el RecyclerView desde tu diseño
+
+        // Configura el RecyclerView
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
+        recyclerView.setLayoutManager(layoutManager);
+
+        // Inicializa el adaptador
+        productosAdapter = new ProductosReservadosAdapter(getContext(), new ArrayList<ProductoModel>());
+        recyclerView.setAdapter(productosAdapter);
+
+        // Llama al método para obtener los productos de la reserva temporal
+        obtenerProductosEnReservaTemporal();
+
+        return view;
     }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_carrito_de_reserva, container, false);
+    private void obtenerProductosEnReservaTemporal() {
+        CarritoReservaUsuarioPresenter presenter = new CarritoReservaUsuarioPresenter();
+        presenter.obtenerProductosEnReservaTemporal(new CarritoReservaUsuarioPresenter.OnProductosObtenidosListener() {
+            @Override
+            public void onProductosObtenidos(List<ProductoModel> productos) {
+                actualizarListaDeProductos(productos);
+            }
+
+            @Override
+            public void onError(String mensajeError) {
+                // Manejar errores si es necesario
+            }
+        });
+    }
+
+
+    private void actualizarListaDeProductos(List<ProductoModel> productos) {
+        productosAdapter.listaProductos = productos; // Actualiza la lista de productos
+        productosAdapter.notifyDataSetChanged(); // Notifica los cambios al adaptador
     }
 }

@@ -1,6 +1,3 @@
-# lecheriaapp 2023
-PROYECTO EN JAVA BAJO EL IDE ANDROIDSTUDIO DE UN ECOMMERCE MOVIL PARA LA EMPRESA LA LECHERIA QUE SERA EL PROYECTO FINAL DEL "CURSO" INTERGRADOR 2
-
 # Proyecto de Gestión de Productos para La Lechería
 
 ## Introducción
@@ -14,6 +11,12 @@ El objetivo principal de este proyecto es mejorar la experiencia del cliente y g
 ## Alcance del Proyecto
 
 Este proyecto se dirige a los clientes de La Lechería que desean mejorar su experiencia de compra y disfrutar de promociones exclusivas. La aplicación móvil estará disponible de forma gratuita para dispositivos Android, lo que significa que cualquier persona con un teléfono inteligente y acceso a Internet podrá descargarla sin costo alguno. Se centra en brindar comodidad y beneficios a los clientes leales de La Lechería, mejorando su relación con la marca y ofreciendo una experiencia de compra más satisfactoria.
+
+## Tecnologías Utilizadas
+
+- Plataforma de desarrollo: Android Studio
+- Arquitectura: Modelo-Vista-Presentador (MVP)
+- Almacenamiento de Datos: Firebase
 
 ## Objetivos Específicos
 

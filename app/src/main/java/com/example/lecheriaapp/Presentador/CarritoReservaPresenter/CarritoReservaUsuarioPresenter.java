@@ -28,52 +28,6 @@ public class CarritoReservaUsuarioPresenter {
         mDatabase = FirebaseDatabase.getInstance().getReference();
     }
 
-    public void obtenerInformacionReservaTemporal(final OnReservaInformacionObtenidaListener listener) {
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-        if (currentUser != null) {
-            String userId = currentUser.getUid();
-
-            // Realizar una consulta para obtener las reservas del usuario actual
-            Query reservaQuery = mDatabase.child("reservas")
-                    .orderByChild("usuarioId")
-                    .equalTo(userId);
-
-            reservaQuery.addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
-                    List<ReservaModel> reservas = new ArrayList<>();
-                    for (DataSnapshot reservaSnapshot : dataSnapshot.getChildren()) {
-                        // Obtén los detalles de la reserva
-                        String fecha = reservaSnapshot.child("fecha").getValue(String.class);
-                        String nombreUsuario = reservaSnapshot.child("nombreUsuario").getValue(String.class);
-                        double subtotal = reservaSnapshot.child("subtotal").getValue(Double.class);
-                        double total = reservaSnapshot.child("total").getValue(Double.class);
-
-                        // Ahora, obtén los productos en la reserva
-                        List<ProductoModel> productos = new ArrayList<>();
-                        DataSnapshot productosSnapshot = reservaSnapshot.child("productos");
-                        for (DataSnapshot productoSnapshot : productosSnapshot.getChildren()) {
-                            ProductoModel producto = productoSnapshot.getValue(ProductoModel.class);
-                            productos.add(producto);
-                        }
-
-                        ReservaModel reserva = new ReservaModel(fecha, nombreUsuario, subtotal, total, productos);
-                        reservas.add(reserva);
-                    }
-
-                    listener.onReservaInformacionObtenida(reservas);
-
-                    Log.d("CarritoReservaPresenter", "Reservas obtenidas: " + reservas.size());
-                }
-
-                @Override
-                public void onCancelled(@NonNull DatabaseError error) {
-                    listener.onError(error.getMessage());
-                }
-            });
-        }
-    }
-
     public void obtenerProductosEnReservaTemporal(final OnProductosObtenidosListener listener) {
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if (currentUser != null) {
@@ -89,11 +43,15 @@ public class CarritoReservaUsuarioPresenter {
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     List<ProductoModel> productos = new ArrayList<>();
                     for (DataSnapshot reservaSnapshot : dataSnapshot.getChildren()) {
-                        // Ahora, obtén los productos en la reserva
-                        DataSnapshot productosSnapshot = reservaSnapshot.child("productos");
-                        for (DataSnapshot productoSnapshot : productosSnapshot.getChildren()) {
-                            ProductoModel producto = productoSnapshot.getValue(ProductoModel.class);
-                            productos.add(producto);
+                        String estado = reservaSnapshot.child("estado").getValue(String.class);
+
+                        if ("RESERVA TEMPORAL".equals(estado)) {
+                            // Solo obtén los productos de la reserva temporal
+                            DataSnapshot productosSnapshot = reservaSnapshot.child("productos");
+                            for (DataSnapshot productoSnapshot : productosSnapshot.getChildren()) {
+                                ProductoModel producto = productoSnapshot.getValue(ProductoModel.class);
+                                productos.add(producto);
+                            }
                         }
                     }
 
@@ -178,7 +136,7 @@ public class CarritoReservaUsuarioPresenter {
         if (currentUser != null) {
             String userId = currentUser.getUid();
 
-            // Realizar una consulta para obtener el subtotal y el total de la reserva actual del usuario
+            // Realizar una consulta para obtener la reserva temporal actual del usuario
             Query reservaQuery = mDatabase.child("reservas")
                     .orderByChild("usuarioId")
                     .equalTo(userId);
@@ -186,15 +144,18 @@ public class CarritoReservaUsuarioPresenter {
             reservaQuery.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
-                    // Obtén el subtotal y total de la primera reserva (asumiendo que solo hay una)
+                    // Busca la reserva temporal actual del usuario
                     for (DataSnapshot reservaSnapshot : dataSnapshot.getChildren()) {
-                        double subtotal = reservaSnapshot.child("subtotal").getValue(Double.class);
-                        double total = reservaSnapshot.child("total").getValue(Double.class);
-                        listener.onSubtotalYTotalObtenidos(subtotal, total);
-                        return; // Sal del bucle ya que solo necesitas los datos de la primera reserva
+                        String estado = reservaSnapshot.child("estado").getValue(String.class);
+                        if ("RESERVA TEMPORAL".equals(estado)) {
+                            double subtotal = reservaSnapshot.child("subtotal").getValue(Double.class);
+                            double total = reservaSnapshot.child("total").getValue(Double.class);
+                            listener.onSubtotalYTotalObtenidos(subtotal, total);
+                            return; // Sal del bucle después de obtener los datos de la reserva temporal
+                        }
                     }
 
-                    listener.onError("No se encontraron reservas");
+                    listener.onError("No se encontró una reserva temporal");
                 }
 
                 @Override
@@ -238,6 +199,70 @@ public class CarritoReservaUsuarioPresenter {
             });
         }
     }
+    public void finalizarReservaTemporal(final OnReservaFinalizadaListener listener) {
+        obtenerIdReservaTemporal(new OnIdReservaTemporalObtenidoListener() {
+            @Override
+            public void onIdReservaTemporalObtenido(String idReservaTemporal) {
+                if (idReservaTemporal != null) {
+                    // Actualiza el estado de la reserva temporal a "FINALIZADO"
+                    DatabaseReference reservaRef = mDatabase.child("reservas").child(idReservaTemporal);
+                    reservaRef.child("estado").setValue("FINALIZADO", new DatabaseReference.CompletionListener() {
+                        @Override
+                        public void onComplete(DatabaseError error, @NonNull DatabaseReference ref) {
+                            if (error == null) {
+                                listener.onReservaFinalizada();
+                                Log.d("CarritoReservaPresenter", "Reserva finalizada con éxito");
+                            } else {
+                                listener.onError(error.getMessage());
+                            }
+                        }
+                    });
+                } else {
+                    listener.onError("No se encontró una reserva temporal");
+                }
+            }
+
+            @Override
+            public void onError(String mensajeError) {
+                listener.onError(mensajeError);
+            }
+        });
+    }
+
+
+    public void obtenerEstadoReservaTemporal(final OnEstadoReservaObtenidoListener listener) {
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if (currentUser != null) {
+            String userId = currentUser.getUid();
+
+            // Realizar una consulta para obtener el estado de la reserva temporal del usuario
+            Query reservaQuery = mDatabase.child("reservas")
+                    .orderByChild("usuarioId")
+                    .equalTo(userId);
+
+            reservaQuery.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    for (DataSnapshot reservaSnapshot : dataSnapshot.getChildren()) {
+                        String estado = reservaSnapshot.child("estado").getValue(String.class);
+                        if ("RESERVA TEMPORAL".equals(estado)) {
+                            listener.onEstadoReservaObtenido(estado);
+
+                            Log.d("CarritoReservaPresenter", "Estado de reserva obtenido: " + estado);
+                            return; // Termina el bucle después de obtener el estado de la reserva temporal
+                        }
+                    }
+                    // Si no se encontró una reserva temporal, puedes manejarlo aquí
+                    listener.onError("No se encontró una reserva temporal");
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+                    listener.onError(error.getMessage());
+                }
+            });
+        }
+    }
 
     public interface OnProductosObtenidosListener {
         void onProductosObtenidos(List<ProductoModel> productos);
@@ -266,4 +291,13 @@ public class CarritoReservaUsuarioPresenter {
         void onIdReservaTemporalObtenido(String idReservaTemporal);
         void onError(String mensajeError);
     }
+    public interface OnReservaFinalizadaListener {
+        void onReservaFinalizada();
+        void onError(String mensajeError);
+    }
+    public interface OnEstadoReservaObtenidoListener {
+        void onEstadoReservaObtenido(String estadoReserva);
+        void onError(String mensajeError);
+    }
+
 }

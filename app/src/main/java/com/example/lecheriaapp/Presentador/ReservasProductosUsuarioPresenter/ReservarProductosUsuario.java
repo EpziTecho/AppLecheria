@@ -12,7 +12,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.example.lecheriaapp.Modelo.ProductoModel;
 import com.google.firebase.database.ValueEventListener;
-import com.example.lecheriaapp.Modelo.ReservaModel;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -61,47 +60,26 @@ public class ReservarProductosUsuario {
         if (currentUser != null) {
             String userId = currentUser.getUid();
 
-            mDatabase.child("reservas").orderByChild("usuarioId").equalTo(userId)
+            DatabaseReference reservasRef = mDatabase.child("reservas");
+
+            // Primero, verifica si el usuario ya tiene una reserva temporal
+            reservasRef.orderByChild("usuarioId").equalTo(userId)
                     .addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                            if (dataSnapshot.exists()) {
-                                String reservaId = dataSnapshot.getChildren().iterator().next().getKey();
-                                DatabaseReference productosRef = mDatabase.child("reservas").child(reservaId).child("productos");
+                            boolean reservaTemporalEncontrada = false;
+                            for (DataSnapshot reservaSnapshot : dataSnapshot.getChildren()) {
+                                String estado = reservaSnapshot.child("estado").getValue(String.class);
+                                if ("RESERVA TEMPORAL".equals(estado)) {
+                                    reservaTemporalEncontrada = true;
+                                    agregarProductoAReserva(reservaSnapshot, producto);
+                                    break;  // Salir del bucle si se encuentra una reserva temporal
+                                }
+                            }
 
-                                productosRef.addListenerForSingleValueEvent(new ValueEventListener() {
-                                    @Override
-                                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                        long cantidadProductos = dataSnapshot.getChildrenCount();
-                                        String productoId = "producto" + String.format("%03d", cantidadProductos);
-
-                                        DatabaseReference productoRef = productosRef.child(productoId);
-                                        productoRef.setValue(producto);
-
-                                        // Actualizar la fecha y hora
-                                        actualizarFechaYHoraReserva(reservaId);
-
-                                        calcularSubtotalYTotal(reservaId);
-                                    }
-
-                                    @Override
-                                    public void onCancelled(@NonNull DatabaseError error) {
-                                        Log.e(TAG, "Error al reservar producto: " + error.getMessage());
-                                    }
-                                });
-                            } else {
-                                DatabaseReference reservaRef = mDatabase.child("reservas").push();
-                                reservaRef.child("usuarioId").setValue(userId);
-                                reservaRef.child("estado").setValue("RESERVA TEMPORAL");
-                                DatabaseReference productosRef = reservaRef.child("productos");
-                                String productoId = "producto00";
-                                DatabaseReference productoRef = productosRef.child(productoId);
-                                productoRef.setValue(producto);
-
-                                // Actualizar la fecha y hora
-                                actualizarFechaYHoraReserva(reservaRef.getKey());
-
-                                calcularSubtotalYTotal(reservaRef.getKey());
+                            if (!reservaTemporalEncontrada) {
+                                // Si no se encuentra una reserva temporal, crear una nueva
+                                crearNuevaReserva(userId, producto);
                             }
                         }
 
@@ -111,6 +89,35 @@ public class ReservarProductosUsuario {
                         }
                     });
         }
+    }
+
+    private void agregarProductoAReserva(DataSnapshot reservaSnapshot, ProductoModel producto) {
+        DatabaseReference productosRef = reservaSnapshot.child("productos").getRef();
+        long cantidadProductos = reservaSnapshot.child("productos").getChildrenCount();
+        String productoId = "producto" + String.format("%03d", cantidadProductos);
+
+        DatabaseReference productoRef = productosRef.child(productoId);
+        productoRef.setValue(producto);
+
+        // Actualizar la fecha y hora
+        actualizarFechaYHoraReserva(reservaSnapshot.getKey());
+
+        calcularSubtotalYTotal(reservaSnapshot.getKey());
+    }
+
+    private void crearNuevaReserva(String userId, ProductoModel producto) {
+        DatabaseReference reservaRef = mDatabase.child("reservas").push();
+        reservaRef.child("usuarioId").setValue(userId);
+        reservaRef.child("estado").setValue("RESERVA TEMPORAL");
+        DatabaseReference productosRef = reservaRef.child("productos");
+        String productoId = "producto00";
+        DatabaseReference productoRef = productosRef.child(productoId);
+        productoRef.setValue(producto);
+
+        // Actualizar la fecha y hora
+        actualizarFechaYHoraReserva(reservaRef.getKey());
+
+        calcularSubtotalYTotal(reservaRef.getKey());
     }
 
     private void actualizarFechaYHoraReserva(String reservaId) {

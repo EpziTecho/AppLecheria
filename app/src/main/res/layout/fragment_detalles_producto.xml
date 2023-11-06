@@ -164,6 +164,12 @@
                 android:textStyle="bold" />
         </LinearLayout>
 
+        <Button
+            android:id="@+id/btn_reservas"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Reservar Producto" />
+
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 

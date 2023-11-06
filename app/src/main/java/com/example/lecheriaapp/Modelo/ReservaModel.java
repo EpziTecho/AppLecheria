@@ -19,7 +19,9 @@ public class ReservaModel {
     public ReservaModel(String fecha, String nombreUsuario, double subtotal, double total, List<ProductoModel> productos) {
         // Constructor vacío requerido por Firebase Realtime Database
     }
-
+    public ReservaModel() {
+        // Constructor sin argumentos necesario para Firebase
+    }
     public int getCantidad() {
         return cantidad;
     }

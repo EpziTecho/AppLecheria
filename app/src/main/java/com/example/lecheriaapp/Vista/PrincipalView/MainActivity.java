@@ -22,7 +22,9 @@ import androidx.fragment.app.FragmentTransaction;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 import com.bumptech.glide.request.RequestOptions;
+import com.example.lecheriaapp.Presentador.CarritoReservaPresenter.CarritoReservaUsuarioPresenter;
 import com.example.lecheriaapp.Vista.CarritoDeReservasView.CarritoDeReservaFragment;
+import com.example.lecheriaapp.Vista.CarritoDeReservasView.CarritoDeReservaVacioFragment;
 import com.example.lecheriaapp.Vista.FavoritosUsuarioView.FavoritosUsuarioFragment;
 import com.example.lecheriaapp.Vista.HomeView.HomeFragment;
 import com.example.lecheriaapp.Modelo.UserModel;
@@ -260,8 +262,28 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.carritoDeReserva) {
-            // Reemplaza CarritoDeReservaFragment con el fragmento deseado
-            replaceFragment(new CarritoDeReservaFragment());
+            // Verifica el estado de la reserva antes de decidir qué fragmento cargar
+            presenterPrincipal.obtenerEstadoReservaTemporal(new CarritoReservaUsuarioPresenter.OnEstadoReservaObtenidoListener() {
+                @Override
+                public void onEstadoReservaObtenido(String estado) {
+                    if ("RESERVA TEMPORAL".equals(estado)) {
+                        // El estado es RESERVA TEMPORAL, reemplaza con el fragmento de carrito de reserva
+                        replaceFragment(new CarritoDeReservaFragment());
+                    } else {
+                        // El estado no es RESERVA TEMPORAL, reemplaza con el fragmento vacío
+                        replaceFragment(new CarritoDeReservaVacioFragment());
+                    }
+                }
+
+                @Override
+                public void onError(String mensajeError) {
+                    // Manejar errores si es necesario
+                    // Por ejemplo, puedes mostrar un Toast con un mensaje de error
+                    Toast.makeText(MainActivity.this, mensajeError, Toast.LENGTH_SHORT).show();
+                    // En caso de error, también puedes redirigir al fragmento vacío para garantizar un comportamiento adecuado
+                    replaceFragment(new CarritoDeReservaVacioFragment());
+                }
+            });
             return true;
         }
         return super.onOptionsItemSelected(item);

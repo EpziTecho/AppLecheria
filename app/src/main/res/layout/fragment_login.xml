@@ -15,8 +15,7 @@
         android:layout_width="142dp"
         android:layout_height="96dp"
         android:padding="12dp"
-        app:srcCompat="@drawable/logolecheria"
-        />
+        app:srcCompat="@drawable/logolecheria" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/username_layout"

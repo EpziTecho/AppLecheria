@@ -33,3 +33,4 @@ Este proyecto se dirige a los clientes de La Lechería que desean mejorar su exp
 5. Proporcionar información en tiempo real a los gerentes de tienda a través de un panel de control que les permita acceder a datos sobre las operaciones del negocio, como las ventas y la frecuencia de clientes.
 
 6. Incrementar la satisfacción general del cliente a través de la mejora en la disponibilidad de productos, la gestión eficiente de pedidos y la provisión de información detallada sobre productos y promociones.
+

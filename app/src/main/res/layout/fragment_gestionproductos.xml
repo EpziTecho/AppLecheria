@@ -1,75 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@color/white"
     android:layout_marginBottom="40dp"
-    >
+    android:background="@color/white">
 
     <!-- LinearLayout para el título -->
-    <LinearLayout
-        android:id="@+id/title_layout"
-        android:layout_width="match_parent"
+
+
+    <TextView
+
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical|center_horizontal"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:padding="16dp">
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="50dp"
+        android:fontFamily="@font/poppins_semibold"
+        android:text="Gestion de productos"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/poppins_semibold"
-            android:text="Gestion de productos"
-            android:textColor="#000000"
-            android:textSize="16sp" />
-    </LinearLayout>
 
     <!-- LinearLayout para la barra de búsqueda y el botón de agregar productos -->
+
+
     <androidx.appcompat.widget.LinearLayoutCompat
         android:id="@+id/search_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/title_layout"
+        android:layout_width="352dp"
+        android:layout_height="67dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="29dp"
         android:orientation="horizontal"
-        android:padding="16dp">
+        android:padding="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView">
         <!-- creamos el ID -->
         <androidx.appcompat.widget.SearchView
             android:id="@+id/buscar_prod"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:padding="8dp"
             app:iconifiedByDefault="false"
             app:queryHint="¿Buscas algun producto?"
-            android:padding="8dp" />
+            tools:layout_editor_absoluteX="98dp"
+            tools:layout_editor_absoluteY="60dp" />
 
     </androidx.appcompat.widget.LinearLayoutCompat>
-    <LinearLayout
-        android:id="@+id/button_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/search_layout"
-        android:orientation="horizontal"
-        android:padding="10dp">
 
-        <Button
-            android:id="@+id/add_button"
-            android:layout_width="343dp"
-            android:layout_height="60dp"
-            android:layout_marginLeft="22dp"
-            android:gravity="center"
-            android:text="Agregar" />
+    <Button
+        android:id="@+id/add_button"
+        android:layout_width="353dp"
+        android:layout_height="54dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="10dp"
+        android:gravity="center"
+        android:text="Agregar"
+        app:layout_constraintBottom_toTopOf="@+id/product_list"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/search_layout" />
 
-    </LinearLayout>
+
     <!-- RecyclerView con CardView para el listado de productos -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/product_list"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/button_layout"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
         android:padding="16dp"
-        />
-</LinearLayout>
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/add_button" />
+</androidx.constraintlayout.widget.ConstraintLayout>

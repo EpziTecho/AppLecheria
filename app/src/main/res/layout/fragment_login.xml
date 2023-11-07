@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearLayout3"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_gravity="center"
@@ -9,40 +11,37 @@
     android:orientation="vertical"
     android:padding="12dp">
 
-
-    <ImageView
-        android:id="@+id/imageView4"
-        android:layout_width="142dp"
-        android:layout_height="96dp"
-        android:padding="12dp"
-        app:srcCompat="@drawable/logolecheria" />
+    <!--boton para registro-->
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/username_layout"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="290dp"
+        android:layout_height="76dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
         android:hint="@string/username_hint"
         app:boxBackgroundMode="outline"
         app:boxCornerRadiusBottomEnd="10dp"
         app:boxCornerRadiusBottomStart="10dp"
         app:boxCornerRadiusTopEnd="10dp"
-        app:boxCornerRadiusTopStart="10dp"
 
+        app:boxCornerRadiusTopStart="10dp"
         app:endIconMode="clear_text"
         app:errorEnabled="true"
         app:errorTextAppearance="@style/ErrorAppearance"
         app:helperTextEnabled="false"
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView4"
         app:startIconDrawable="@drawable/ic_user">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/username_input"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="wrap_content"
             android:drawablePadding="10dp"
             android:inputType="text"
             android:maxLines="1" />
@@ -52,8 +51,11 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/password_layout"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="290dp"
+        android:layout_height="73dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="10dp"
         android:hint="@string/password_hint"
         app:boxBackgroundMode="outline"
         app:boxCornerRadiusBottomEnd="10dp"
@@ -66,13 +68,13 @@
         app:helperTextEnabled="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/username_layout">
+        app:layout_constraintTop_toBottomOf="@+id/username_layout">
 
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/password_input"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="wrap_content"
             android:inputType="textPassword"
             android:maxLines="1"
             android:singleLine="true" />
@@ -81,31 +83,66 @@
 
     <Button
         android:id="@+id/login_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="290dp"
+        android:layout_height="53dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
         android:background="@drawable/button_rounded"
         android:text="@string/login_button"
         android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/password_layout" />
+        app:layout_constraintTop_toBottomOf="@+id/password_layout" />
+
     <TextView
+        android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="¿No tienes un cuenta?"
+        android:layout_marginStart="85dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="85dp"
+        android:layout_marginBottom="5dp"
         android:padding="6dp"
-        />
-    <!--boton para registro-->
+        android:text="¿No tienes un cuenta?"
+        app:layout_constraintBottom_toTopOf="@+id/registro_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.44"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/login_button"
+        app:layout_constraintVertical_bias="0.0" />
+
     <Button
         android:id="@+id/registro_button"
-        android:layout_width="match_parent"
+        android:layout_width="290dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="5dp"
         android:background="@drawable/button_raunded_border"
         android:text="@string/registro_button"
         android:textColor="#FDFDFD"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/login_button" />
+        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="175dp"
+        android:layout_height="112dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="60dp"
+        android:layout_marginBottom="349dp"
+        android:padding="12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.51"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/logolecheria" />
 
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

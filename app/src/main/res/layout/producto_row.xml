@@ -6,8 +6,7 @@
     android:gravity="center"
     android:background="@drawable/producto_background"
     android:orientation="vertical"
-    android:layout_marginLeft="13dp"
-    android:layout_marginTop="10dp"
+    android:layout_margin="10dp"
     android:elevation="10dp"
     android:layout_marginBottom="8dp"
     >

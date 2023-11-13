@@ -42,11 +42,11 @@
         android:id="@+id/linearLayout7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="12dp"
         android:gravity="center_horizontal"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintHorizontal_bias="0.486"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/subtitleTextView">
 
@@ -57,14 +57,14 @@
             android:id="@+id/leftSpinner"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="4dp"
+            android:layout_margin="10dp"
             android:background="@drawable/spinner_background" />
 
         <Spinner
             android:id="@+id/rightSpinner"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="4dp"
+            android:layout_margin="10dp"
             android:background="@drawable/spinner_background" />
 
     </LinearLayout>
@@ -83,13 +83,12 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewHome"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="520dp"
 
 
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view"
         app:layout_constraintVertical_bias="0.0" />

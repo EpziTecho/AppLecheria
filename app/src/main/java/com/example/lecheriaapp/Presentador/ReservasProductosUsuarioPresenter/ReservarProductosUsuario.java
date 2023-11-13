@@ -55,7 +55,7 @@ public class ReservarProductosUsuario {
         });
     }
 
-    public void reservarProducto(ProductoModel producto) {
+    public void reservarProducto(ProductoModel producto, int cantidad, String local) {
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if (currentUser != null) {
             String userId = currentUser.getUid();
@@ -72,14 +72,14 @@ public class ReservarProductosUsuario {
                                 String estado = reservaSnapshot.child("estado").getValue(String.class);
                                 if ("RESERVA TEMPORAL".equals(estado)) {
                                     reservaTemporalEncontrada = true;
-                                    agregarProductoAReserva(reservaSnapshot, producto);
+                                    agregarProductoAReserva(reservaSnapshot, producto, cantidad, local);
                                     break;  // Salir del bucle si se encuentra una reserva temporal
                                 }
                             }
 
                             if (!reservaTemporalEncontrada) {
                                 // Si no se encuentra una reserva temporal, crear una nueva
-                                crearNuevaReserva(userId, producto);
+                                crearNuevaReserva(userId, producto, cantidad, local);
                             }
                         }
 
@@ -91,12 +91,15 @@ public class ReservarProductosUsuario {
         }
     }
 
-    private void agregarProductoAReserva(DataSnapshot reservaSnapshot, ProductoModel producto) {
+    private void agregarProductoAReserva(DataSnapshot reservaSnapshot, ProductoModel producto, int cantidad, String local) {
         DatabaseReference productosRef = reservaSnapshot.child("productos").getRef();
         long cantidadProductos = reservaSnapshot.child("productos").getChildrenCount();
         String productoId = "producto" + String.format("%03d", cantidadProductos);
 
         DatabaseReference productoRef = productosRef.child(productoId);
+        // Modificar la cantidad y local del producto antes de agregarlo a la reserva
+        producto.setCantidad(cantidad);
+        producto.setLocal(local);
         productoRef.setValue(producto);
 
         // Actualizar la fecha y hora
@@ -105,13 +108,16 @@ public class ReservarProductosUsuario {
         calcularSubtotalYTotal(reservaSnapshot.getKey());
     }
 
-    private void crearNuevaReserva(String userId, ProductoModel producto) {
+    private void crearNuevaReserva(String userId, ProductoModel producto, int cantidad, String local) {
         DatabaseReference reservaRef = mDatabase.child("reservas").push();
         reservaRef.child("usuarioId").setValue(userId);
         reservaRef.child("estado").setValue("RESERVA TEMPORAL");
         DatabaseReference productosRef = reservaRef.child("productos");
         String productoId = "producto00";
         DatabaseReference productoRef = productosRef.child(productoId);
+        // Modificar la cantidad y local del producto antes de agregarlo a la reserva
+        producto.setCantidad(cantidad);
+        producto.setLocal(local);
         productoRef.setValue(producto);
 
         // Actualizar la fecha y hora

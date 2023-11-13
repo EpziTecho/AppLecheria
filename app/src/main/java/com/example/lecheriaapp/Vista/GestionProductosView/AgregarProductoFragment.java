@@ -43,7 +43,7 @@ import java.util.Map;
 
 public class AgregarProductoFragment extends Fragment implements View.OnClickListener {
 
-    private EditText mTextNombreProducto, mTextCalorias, mTextPrecio, mTextIngredientes;
+    private EditText mTextNombreProducto, mTextCalorias, mTextPrecio, mTextIngredientes, mTextCantidad;
     private Button mBtnAgregar, mBtnCancelar, mBtnSeleccionarImagen;
     private ImageView mSelectedImageView;
     private Spinner mSpinnerEstado, mSpinnerDisponibilidad, mSpinnerCategoria;
@@ -61,6 +61,7 @@ public class AgregarProductoFragment extends Fragment implements View.OnClickLis
         mTextCalorias = view.findViewById(R.id.textCalorias);
         mTextPrecio = view.findViewById(R.id.textPrecio);
         mTextIngredientes = view.findViewById(R.id.textIngredientes);
+        mTextCantidad = view.findViewById(R.id.textCantidad);
         mBtnAgregar = view.findViewById(R.id.btnAgregar);
         mBtnCancelar = view.findViewById(R.id.btnCancelar);
         mBtnSeleccionarImagen = view.findViewById(R.id.selectImageButton);
@@ -107,8 +108,9 @@ public class AgregarProductoFragment extends Fragment implements View.OnClickLis
             String estado = mSpinnerEstado.getSelectedItem().toString();
             String disponibilidad = mSpinnerDisponibilidad.getSelectedItem().toString();
             String categoria = mSpinnerCategoria.getSelectedItem().toString();
+            String cantidad = mTextCantidad.getText().toString().trim();
 
-            if (!nombreProducto.isEmpty() && !calorias.isEmpty() && !ingredientes.isEmpty() && !estado.isEmpty() && !disponibilidad.isEmpty() && !categoria.isEmpty() && imageUri != null) {
+            if (!nombreProducto.isEmpty() && !calorias.isEmpty() && !ingredientes.isEmpty() && !estado.isEmpty() && !disponibilidad.isEmpty() && !categoria.isEmpty() && imageUri != null && !cantidad.isEmpty()) {
                 // Generar el código QR
                 Bitmap qrBitmap = generateQRCode(nombreProducto);
 
@@ -145,6 +147,7 @@ public class AgregarProductoFragment extends Fragment implements View.OnClickLis
                                 producto.put("nombre", nombreProducto);
                                 producto.put("precio", precio);
                                 producto.put("codigoQR", qrUrl);
+                                producto.put("cantidad", cantidad);
 
                                 // Llamar al presentador para agregar el producto
                                 mPresentador.agregarProducto(
@@ -156,7 +159,8 @@ public class AgregarProductoFragment extends Fragment implements View.OnClickLis
                                         categoria,
                                         ingredientes,
                                         imageUrl,
-                                        qrUrl
+                                        qrUrl,
+                                        cantidad
                                 );
 
                                 // Mostrar mensaje de éxito
@@ -184,7 +188,7 @@ public class AgregarProductoFragment extends Fragment implements View.OnClickLis
             intent.setType("image/*");
             startActivityForResult(intent, GALLERY_REQUEST_CODE);
         } else if (view.getId() == R.id.btnCancelar) {
-           //Toast.makeText(getActivity(), "Cancelado", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getActivity(), "Cancelado", Toast.LENGTH_SHORT).show();
             FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
             fragmentManager.beginTransaction().replace(R.id.fragment_container, new GestionProductosFragment()).commit();
         }

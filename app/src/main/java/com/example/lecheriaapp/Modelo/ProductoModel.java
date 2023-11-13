@@ -10,6 +10,8 @@ public class ProductoModel {
     private String imageUrl;
     private String categoria;
     private String codigoQR;
+    private int cantidad;
+    private String local;
 
     public ProductoModel(String nombre, String caloria, String precio, String estado, String disponibilidad, String ingredientes, String imageUrl, String categoria, String codigoQR) {
         this.nombre = nombre;
@@ -97,5 +99,21 @@ public class ProductoModel {
 
     public void setCategoria(String categoria) {
         this.categoria = categoria;
+    }
+
+    public void setCantidad(int cantidad) {
+        this.cantidad = cantidad;
+    }
+
+    public int getCantidad() {
+        return cantidad;
+    }
+
+    public void setLocal(String local) {
+        this.local = local;
+    }
+
+    public String getLocal() {
+        return local;
     }
 }

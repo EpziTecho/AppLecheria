@@ -47,18 +47,25 @@ public class ReservasAdapter extends RecyclerView.Adapter<ReservasAdapter.Reserv
     }
 
     public static class ReservaViewHolder extends RecyclerView.ViewHolder {
-        private TextView textViewNombreUsuario;
+        private TextView textViewIdReserva;
         private TextView textViewFecha;
+        private TextView textViewTotal;
 
+        private TextView textViewEstado;
         public ReservaViewHolder(@NonNull View itemView) {
             super(itemView);
-            textViewNombreUsuario = itemView.findViewById(R.id.textViewNombreUsuario);
+            textViewIdReserva = itemView.findViewById(R.id.textViewIdReserva);
             textViewFecha = itemView.findViewById(R.id.textViewFecha);
+            textViewTotal = itemView.findViewById(R.id.textViewTotal);
+            textViewEstado = itemView.findViewById(R.id.textViewEstado);
         }
 
         public void bind(ReservaModel reserva) {
-            textViewNombreUsuario.setText(reserva.getUserId());
+            textViewIdReserva.setText(String.valueOf(reserva.getReservaId()));
             textViewFecha.setText(reserva.getFecha());
+            textViewEstado.setText(reserva.getEstado());
+            textViewTotal.setText(String.valueOf(reserva.getTotal()));
+
         }
     }
 }

@@ -24,13 +24,23 @@
         android:textStyle="italic"
         android:paddingBottom="8dp" />
 
+    <TextView
+        android:id="@+id/textViewCantidad"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cantidad: 0"
+        android:textSize="16sp"
+        android:textStyle="italic"
+        android:paddingBottom="8dp" />
+
+
     <ImageView
         android:id="@+id/imageViewProducto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         />
 
-    <!-- Puedes seguir agregando más vistas según tus necesidades -->
+
 
     <View
         android:layout_width="match_parent"

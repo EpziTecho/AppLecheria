@@ -42,18 +42,18 @@ public class ReservasUsuariosFragment extends Fragment implements GestionReserva
 
         recyclerView = view.findViewById(R.id.recyclerViewReservas);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        reservasAdapter = new ReservasAdapter(); // Pasar una lista vacía al constructor
+        reservasAdapter = new ReservasAdapter();
         recyclerView.setAdapter(reservasAdapter);
 
         presentadorGestionReservas = new PresentadorGestionReservas(this);
-        presentadorGestionReservas.obtenerReservasDesdeFirebase(); // Llamada para obtener las reservas
+        presentadorGestionReservas.obtenerReservasDesdeFirebase(); // Call to get reservations
 
         return view;
     }
 
     @Override
     public void mostrarMensaje(String mensaje) {
-        // Implementa cómo deseas mostrar el mensaje en tu fragmento
+        // Implement how you want to display the message in your fragment
     }
 
     @Override

@@ -1,253 +1,222 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginBottom="70dp"
-    android:fillViewport="true">
+    android:layout_marginBottom="40dp"
+    >
 
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
 
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        >
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:layout_marginBottom="1dp">
 
-        <TextView
-            android:id="@+id/titleTextView1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-
-            android:fontFamily="@font/poppins_medium"
-            android:text="Editar Producto"
-            android:textAlignment="center"
-            android:textColor="@color/black"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-
-
-        <TextView
-            android:id="@+id/tituloEstado1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="Estado"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.089"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/titleTextView1" />
-
-        <Spinner
-            android:id="@+id/spinnerEstado1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/spinner_background"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.135"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tituloEstado1" />
-
-        <TextView
-            android:id="@+id/tituloimagen1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:text="Foto del producto"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.109"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/spinnerEstado1" />
-
-        <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/selectedImageView1"
-            android:layout_width="345dp"
-            android:layout_height="165dp"
-            android:layout_gravity="center"
-            android:scaleType="centerInside"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tituloimagen1"
-            app:shapeAppearanceOverlay="@style/RoundedImageViewRoundedProd"
-
-
-            app:srcCompat="@drawable/img_no_disponible"
-            app:strokeColor="@color/black"
-            app:strokeWidth="2dp" />
-
-        <Button
-            android:id="@+id/selectImageButton1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-
-            android:text="Seleccionar imagen"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/selectedImageView1" />
-
-        <TextView
-            android:id="@+id/titulonombre1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:text="Nombre comercial"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.111"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/selectImageButton1" />
-
-        <EditText
-            android:id="@+id/textNombreProducto1"
-            android:layout_width="345dp"
-            android:layout_height="wrap_content"
-            android:background="@drawable/text_background"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/titulonombre1" />
-        <EditText
-            android:id="@+id/textQR"
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/text_background"
-            android:visibility="gone"
-            />
+            android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/titulocalorias1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:text="Calorias"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.091"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textNombreProducto1" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                android:orientation="vertical">
 
-        <EditText
-            android:id="@+id/textCalorias1"
-            android:layout_width="345dp"
-            android:layout_height="wrap_content"
-            android:background="@drawable/text_background"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/titulocalorias1" />
+                <TextView
+                    android:id="@+id/titleTextView1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_medium"
+                    android:padding="16dp"
+                    android:text="Editar Producto"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/tituloPrecio1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:inputType="number"
-            android:text="Precio"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.088"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textCalorias1" />
+                <TextView
+                    android:id="@+id/tituloEstado1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Estado" />
 
-        <EditText
-            android:id="@+id/textPrecio1"
-            android:layout_width="345dp"
-            android:layout_height="wrap_content"
-            android:background="@drawable/text_background"
-            android:inputType="number"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tituloPrecio1" />
+                <Spinner
+                    android:id="@+id/spinnerEstado1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="8dp"
+                    android:background="@drawable/spinner_background" />
 
-        <LinearLayout
-            android:id="@+id/linearLayout6"
-            android:layout_width="wrap_content"
+                <TextView
+                    android:id="@+id/tituloCantidad1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Cantidad" />
 
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:orientation="horizontal"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.486"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textPrecio1">
-            <!-- Spinner Sede  -->
-            <!--<TextView
-                android:id="@+id/titulodisponibilidad"
+                <EditText
+                    android:id="@+id/textCantidad1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/text_background" />
+
+
+                <!-- foto del producto  -->
+                <TextView
+                    android:id="@+id/tituloimagen1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="9dp"
+                    android:text="Foto del producto" />
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/selectedImageView1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="120dp"
+                    android:layout_gravity="center"
+                    android:scaleType="centerInside"
+
+                    app:shapeAppearanceOverlay="@style/RoundedImageViewRoundedProd"
+
+                    app:srcCompat="@drawable/img_no_disponible"
+                    app:strokeColor="@color/black"
+                    app:strokeWidth="2dp"
+
+
+                    />
+
+                <Button
+                    android:id="@+id/selectImageButton1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="Seleccionar imagen"
+
+                    />
+
+                <TextView
+                    android:id="@+id/titulonombre1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Nombre comercial" />
+
+                <EditText
+                    android:id="@+id/textNombreProducto1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/text_background" />
+                <EditText
+                    android:id="@+id/textQR"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/text_background"
+                    android:visibility="gone"
+                    />
+
+                <TextView
+                    android:id="@+id/titulocalorias1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Calorias" />
+
+                <EditText
+                    android:id="@+id/textCalorias1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/text_background" />
+
+                <TextView
+                    android:id="@+id/tituloPrecio1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Precio" />
+
+                <EditText
+                    android:id="@+id/textPrecio1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/text_background" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="16dp"
+
+                    android:orientation="horizontal">
+                    <!-- Spinner Sede  -->
+                    <!--<TextView
+                android:id="@+id/titulodisponibilidad1"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="Disponibilidad en sedes" />-->
-            <Spinner
-                android:id="@+id/spinnerDisponibilidad1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="10dp"
-                android:background="@drawable/spinner_background" />
-            <!-- Spinner Categoria  -->
-            <!--<TextView
-                android:id="@+id/titulocategoria"
+                    <Spinner
+                        android:id="@+id/spinnerDisponibilidad1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="20dp"
+                        android:background="@drawable/spinner_background" />
+                    <!-- Spinner Categoria  -->
+                    <!--<TextView
+                android:id="@+id/titulocategoria1"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="Categoria" />-->
-            <Spinner
-                android:id="@+id/spinnerCategoria1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="10dp"
-                android:background="@drawable/spinner_background"
+                    <Spinner
+                        android:id="@+id/spinnerCategoria1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:background="@drawable/spinner_background"
 
-                />
-        </LinearLayout>
+                        />
+                </LinearLayout>
 
-        <TextView
-            android:id="@+id/tituloAgregarIngredientes1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:text="Descripción"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.097"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout6" />
+                <TextView
+                    android:id="@+id/tituloAgregarIngredientes1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Descripción" />
 
-        <EditText
-            android:id="@+id/textIngredientes1"
-            android:layout_width="345dp"
-            android:layout_height="wrap_content"
-            android:background="@drawable/text_background"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tituloAgregarIngredientes1" />
+                <EditText
+                    android:id="@+id/textIngredientes1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/text_background" />
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:gravity="center_horizontal"
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:gravity="center_horizontal"
+                    android:orientation="horizontal"
 
-            android:orientation="horizontal"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textIngredientes1">
+                    >
 
-            <Button
-                android:id="@+id/btnLayoutEditarProducto1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="8dp"
-                android:text="Guardar"
+                    <Button
+                        android:id="@+id/btnLayoutEditarProducto1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="8dp"
+                        android:text="Guardar"
 
-                />
+                        />
 
-            <Button
-                android:id="@+id/btnCancelar1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="8dp"
-                android:text="Cancelar" />
-        </LinearLayout>
-    </androidx.constraintlayout.widget.ConstraintLayout>
+                    <Button
+                        android:id="@+id/btnCancelar1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="8dp"
+                        android:text="Cancelar" />
+                </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
 
 
+    </LinearLayout>
 
-</ScrollView>
+
+</LinearLayout>

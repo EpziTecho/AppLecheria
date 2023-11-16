@@ -2,72 +2,39 @@ package com.example.lecheriaapp.Modelo;
 
 import java.util.List;
 
+import java.util.Map;
+
 public class ReservaModel {
-    private String id; // ID único de la reserva
-    private String userId; // ID del usuario que hizo la reserva
-    private List<ProductoModel> productos; // Lista de productos en la reserva
+    private String reservaId;
+    private String estado;
+    private String fecha;
+    private Map<String, ProductoModel> productos; // Map to represent the nested products
+    private int subtotal;
+    private int total;
+    private String usuarioId;
 
-    private int cantidad; // Cantidad de productos reservados
-    private String estado; // Estado de la reserva (por ejemplo, "RESERVA TEMPORAL")
-    private String fecha; // Fecha de la reserva
-    private String local; // Local donde se realiza la reserva
-    private double subtotal; // Subtotal de la reserva
-    private double descuentos; // Descuentos aplicados a la reserva
-    private double total; // Total de la reserva
-    private String hora; // Hora de la reserva
+    // Constructors, getters, and setters
 
-    public ReservaModel(String fecha, String nombreUsuario, double subtotal, double total, List<ProductoModel> productos) {
-        // Constructor vacío requerido por Firebase Realtime Database
-    }
     public ReservaModel() {
-        // Constructor sin argumentos necesario para Firebase
-    }
-    public int getCantidad() {
-        return cantidad;
+        // Default constructor required for Firebase
     }
 
-    public void setCantidad(int cantidad) {
-        this.cantidad = cantidad;
-    }
-
-    public ReservaModel(String id, String userId, List<ProductoModel> productos, String estado, String fecha, String local, double subtotal, double descuentos, double total, String hora) {
-        this.id = id;
-        this.userId = userId;
-        this.productos = productos;
+    public ReservaModel(String reservaId, String estado, String fecha, Map<String, ProductoModel> productos, int subtotal, int total, String usuarioId) {
+        this.reservaId = reservaId;
         this.estado = estado;
         this.fecha = fecha;
-        this.local = local;
-        this.subtotal = subtotal;
-        this.descuentos = descuentos;
-        this.total = total;
-        this.hora = hora;
-    }
-
-    // Agrega los métodos getter y setter para todas las propiedades
-
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getUserId() {
-        return userId;
-    }
-
-    public void setUserId(String userId) {
-        this.userId = userId;
-    }
-
-    public List<ProductoModel> getProductos() {
-        return productos;
-    }
-
-    public void setProductos(List<ProductoModel> productos) {
         this.productos = productos;
+        this.subtotal = subtotal;
+        this.total = total;
+        this.usuarioId = usuarioId;
+    }
+
+    public String getReservaId() {
+        return reservaId;
+    }
+
+    public void setReservaId(String reservaId) {
+        this.reservaId = reservaId;
     }
 
     public String getEstado() {
@@ -86,43 +53,35 @@ public class ReservaModel {
         this.fecha = fecha;
     }
 
-    public String getLocal() {
-        return local;
+    public Map<String, ProductoModel> getProductos() {
+        return productos;
     }
 
-    public void setLocal(String local) {
-        this.local = local;
+    public void setProductos(Map<String, ProductoModel> productos) {
+        this.productos = productos;
     }
 
-    public double getSubtotal() {
+    public int getSubtotal() {
         return subtotal;
     }
 
-    public void setSubtotal(double subtotal) {
+    public void setSubtotal(int subtotal) {
         this.subtotal = subtotal;
     }
 
-    public double getDescuentos() {
-        return descuentos;
-    }
-
-    public void setDescuentos(double descuentos) {
-        this.descuentos = descuentos;
-    }
-
-    public double getTotal() {
+    public int getTotal() {
         return total;
     }
 
-    public void setTotal(double total) {
+    public void setTotal(int total) {
         this.total = total;
     }
 
-    public String getHora() {
-        return hora;
+    public String getUsuarioId() {
+        return usuarioId;
     }
 
-    public void setHora(String hora) {
-        this.hora = hora;
+    public void setUsuarioId(String usuarioId) {
+        this.usuarioId = usuarioId;
     }
 }

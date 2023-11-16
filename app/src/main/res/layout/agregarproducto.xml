@@ -1,169 +1,134 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginBottom="70dp"
-    android:fillViewport="true">
+    android:layout_marginBottom="40dp"
+    >
 
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.appcompat.widget.LinearLayoutCompat
 
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        >
-
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:layout_gravity="center"
+        android:layout_marginBottom="1dp">
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white">
         <TextView
             android:id="@+id/titleTextView"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-
             android:fontFamily="@font/poppins_medium"
+            android:padding="16dp"
             android:text="Agregar Producto"
             android:textAlignment="center"
             android:textColor="@color/black"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-
+            android:textSize="14sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/tituloEstado"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="Estado"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.089"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/titleTextView" />
-
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Estado" />
         <Spinner
             android:id="@+id/spinnerEstado"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/spinner_background"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.135"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tituloEstado" />
+            android:layout_marginRight="8dp"
+            android:background="@drawable/spinner_background"/>
 
+            <TextView
+                android:id="@+id/tituloCantidad"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Cantidad" />
+
+            <EditText
+                android:id="@+id/textCantidad"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/text_background" />
+        <!-- foto del producto  -->
         <TextView
             android:id="@+id/tituloimagen"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:text="Foto del producto"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.109"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/spinnerEstado" />
-
+            android:layout_marginTop="9dp"/>
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/selectedImageView"
-            android:layout_width="345dp"
-            android:layout_height="165dp"
-            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="120dp"
             android:scaleType="centerInside"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tituloimagen"
-            app:shapeAppearanceOverlay="@style/RoundedImageViewRoundedProd"
-
-
             app:srcCompat="@drawable/img_no_disponible"
+            android:layout_gravity="center"
+            app:shapeAppearanceOverlay="@style/RoundedImageViewRoundedProd"
             app:strokeColor="@color/black"
-            app:strokeWidth="2dp" />
+            app:strokeWidth="2dp"
+
+
+            />
 
         <Button
             android:id="@+id/selectImageButton"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-
+            android:layout_height="match_parent"
             android:text="Seleccionar imagen"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/selectedImageView" />
 
+            />
         <TextView
             android:id="@+id/titulonombre"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:text="Nombre comercial"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.111"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/selectImageButton" />
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Nombre comercial" />
 
         <EditText
             android:id="@+id/textNombreProducto"
-            android:layout_width="345dp"
-            android:layout_height="wrap_content"
-            android:background="@drawable/text_background"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/titulonombre" />
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/text_background"/>
 
         <TextView
             android:id="@+id/titulocalorias"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:text="Calorias"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.091"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textNombreProducto" />
-
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Calorias" />
         <EditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:id="@+id/textCalorias"
-            android:layout_width="345dp"
-            android:layout_height="wrap_content"
-            android:background="@drawable/text_background"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/titulocalorias" />
+            android:background="@drawable/text_background"/>
 
         <TextView
             android:id="@+id/tituloPrecio"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:inputType="number"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:text="Precio"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.088"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textCalorias" />
-
+            android:inputType="number"/>
         <EditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:id="@+id/textPrecio"
-            android:layout_width="345dp"
-            android:layout_height="wrap_content"
             android:background="@drawable/text_background"
-            android:inputType="number"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tituloPrecio" />
+            android:inputType="number"/>
 
         <LinearLayout
-            android:id="@+id/linearLayout6"
-            android:layout_width="wrap_content"
-
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:orientation="horizontal"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.486"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textPrecio">
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+
+            android:orientation="horizontal">
             <!-- Spinner Sede  -->
             <!--<TextView
                 android:id="@+id/titulodisponibilidad"
@@ -174,8 +139,9 @@
                 android:id="@+id/spinnerDisponibilidad"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="10dp"
-                android:background="@drawable/spinner_background" />
+                android:layout_marginRight="20dp"
+                android:background="@drawable/spinner_background"
+                />
             <!-- Spinner Categoria  -->
             <!--<TextView
                 android:id="@+id/titulocategoria"
@@ -186,7 +152,7 @@
                 android:id="@+id/spinnerCategoria"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="10dp"
+                android:layout_marginLeft="20dp"
                 android:background="@drawable/spinner_background"
 
                 />
@@ -194,53 +160,47 @@
 
         <TextView
             android:id="@+id/tituloAgregarIngredientes"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:text="Descripción"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.097"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout6" />
-
+            />
         <EditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:id="@+id/textIngredientes"
-            android:layout_width="345dp"
-            android:layout_height="wrap_content"
-            android:background="@drawable/text_background"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tituloAgregarIngredientes" />
-
+            android:background="@drawable/text_background"/>
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
             android:gravity="center_horizontal"
-
             android:orientation="horizontal"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textIngredientes">
 
+            >
             <Button
                 android:id="@+id/btnAgregar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="8dp"
                 android:text="Agregar"
+                android:layout_marginRight="8dp"
 
                 />
-
             <Button
                 android:id="@+id/btnCancelar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="8dp"
-                android:text="Cancelar" />
+                android:text="Cancelar"
+                android:layout_marginRight="8dp"/>
         </LinearLayout>
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
+        </ScrollView>
 
 
 
-</ScrollView>
+
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+</com.google.android.material.card.MaterialCardView>

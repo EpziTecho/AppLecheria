@@ -37,6 +37,7 @@ public class ProductosReservadosAdapter extends RecyclerView.Adapter<ProductosRe
 
         holder.nombreTextView.setText("Nombre: " + producto.getNombre());
         holder.precioTextView.setText("Precio: $" + producto.getPrecio());
+        holder.cantidadTextView.setText("Cantidad: " + producto.getCantidad());
         //imagen viene con glide
         Glide.with(context)
                 .load(producto.getImageUrl())
@@ -55,6 +56,7 @@ public class ProductosReservadosAdapter extends RecyclerView.Adapter<ProductosRe
         public ImageView imageView;
         public TextView precioTextView;
 
+        public TextView cantidadTextView;
 
         public ProductoViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -62,6 +64,7 @@ public class ProductosReservadosAdapter extends RecyclerView.Adapter<ProductosRe
             nombreTextView = itemView.findViewById(R.id.textViewNombre);
             precioTextView = itemView.findViewById(R.id.textViewPrecio);
             imageView = itemView.findViewById(R.id.imageViewProducto);
+            cantidadTextView = itemView.findViewById(R.id.textViewCantidad);
         }
     }
 

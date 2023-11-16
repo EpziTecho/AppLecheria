@@ -1,66 +1,63 @@
 package com.example.lecheriaapp.Vista.ReservasUsuariosView;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.lecheriaapp.Adaptadores.ReservasAdapter;
+import com.example.lecheriaapp.Modelo.ReservaModel;
+import com.example.lecheriaapp.Presentador.GestionReservasPresenter.PresentadorGestionReservas;
+import com.example.lecheriaapp.Presentador.GestionReservasPresenter.PresentadorGestionReservas.GestionReservasView;
 import com.example.lecheriaapp.R;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link ReservasUsuariosFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
-public class ReservasUsuariosFragment extends Fragment {
+import java.util.List;
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+public class ReservasUsuariosFragment extends Fragment implements GestionReservasView {
+    private RecyclerView recyclerView;
+    private ReservasAdapter reservasAdapter;
+    private PresentadorGestionReservas presentadorGestionReservas;
 
     public ReservasUsuariosFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment ReservasUsuariosFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static ReservasUsuariosFragment newInstance(String param1, String param2) {
-        ReservasUsuariosFragment fragment = new ReservasUsuariosFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
+    public static ReservasUsuariosFragment newInstance() {
+        return new ReservasUsuariosFragment();
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_reservas_usuarios_view, container, false);
+        View view = inflater.inflate(R.layout.fragment_reservas_usuarios_view, container, false);
+
+        recyclerView = view.findViewById(R.id.recyclerViewReservas);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        reservasAdapter = new ReservasAdapter();
+        recyclerView.setAdapter(reservasAdapter);
+
+        presentadorGestionReservas = new PresentadorGestionReservas(this);
+        presentadorGestionReservas.obtenerReservasDesdeFirebase(); // Call to get reservations
+
+        return view;
+    }
+
+    @Override
+    public void mostrarMensaje(String mensaje) {
+        // Implement how you want to display the message in your fragment
+    }
+
+    @Override
+    public void mostrarReservas(List<ReservaModel> reservas) {
+        reservasAdapter.actualizarReservas(reservas);
     }
 }

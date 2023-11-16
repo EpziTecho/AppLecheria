@@ -16,6 +16,7 @@ import com.example.lecheriaapp.Modelo.ProductoModel;
 import com.example.lecheriaapp.Presentador.CarritoReservaPresenter.CarritoReservaUsuarioPresenter;
 import com.example.lecheriaapp.R;
 import com.example.lecheriaapp.Vista.HomeView.HomeFragment;
+import com.example.lecheriaapp.Vista.ReservaQrView.ReservaQrFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -85,7 +86,7 @@ public class CarritoDeReservaFragment extends Fragment {
                 // La reserva se ha finalizado correctamente, puedes realizar acciones adicionales si es necesario
                 Toast.makeText(getContext(), "Reserva finalizada correctamente", Toast.LENGTH_SHORT).show();
                 // Redirige a HomeFragment
-                getFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomeFragment()).commit();
+                getFragmentManager().beginTransaction().replace(R.id.fragment_container, new ReservaQrFragment()).commit();
             }
 
             @Override

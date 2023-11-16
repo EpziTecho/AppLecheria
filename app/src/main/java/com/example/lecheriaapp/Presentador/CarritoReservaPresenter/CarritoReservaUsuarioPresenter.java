@@ -144,12 +144,21 @@ public class CarritoReservaUsuarioPresenter {
             reservaQuery.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
+                    double subtotal = 0.0;
+                    double total = 0.0;
+
                     // Busca la reserva temporal actual del usuario
                     for (DataSnapshot reservaSnapshot : dataSnapshot.getChildren()) {
                         String estado = reservaSnapshot.child("estado").getValue(String.class);
                         if ("RESERVA TEMPORAL".equals(estado)) {
-                            double subtotal = reservaSnapshot.child("subtotal").getValue(Double.class);
-                            double total = reservaSnapshot.child("total").getValue(Double.class);
+                            DataSnapshot productosSnapshot = reservaSnapshot.child("productos");
+                            for (DataSnapshot productoSnapshot : productosSnapshot.getChildren()) {
+                                ProductoModel producto = productoSnapshot.getValue(ProductoModel.class);
+                                if (producto != null) {
+                                    subtotal += producto.getCantidad() * Double.parseDouble(producto.getPrecio());
+                                }
+                            }
+                            total = subtotal;  // En este ejemplo, total es igual al subtotal
                             listener.onSubtotalYTotalObtenidos(subtotal, total);
                             return; // Sal del bucle después de obtener los datos de la reserva temporal
                         }

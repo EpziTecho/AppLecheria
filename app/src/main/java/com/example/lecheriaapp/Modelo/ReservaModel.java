@@ -12,6 +12,7 @@ public class ReservaModel {
     private int subtotal;
     private int total;
     private String usuarioId;
+    private String qr;
 
     // Constructors, getters, and setters
 
@@ -19,7 +20,7 @@ public class ReservaModel {
         // Default constructor required for Firebase
     }
 
-    public ReservaModel(String reservaId, String estado, String fecha, Map<String, ProductoModel> productos, int subtotal, int total, String usuarioId) {
+    public ReservaModel(String reservaId, String estado, String fecha, Map<String, ProductoModel> productos, int subtotal, int total, String usuarioId, String qr) {
         this.reservaId = reservaId;
         this.estado = estado;
         this.fecha = fecha;
@@ -27,6 +28,15 @@ public class ReservaModel {
         this.subtotal = subtotal;
         this.total = total;
         this.usuarioId = usuarioId;
+        this.qr = qr;
+    }
+
+    public String getQr() {
+        return qr;
+    }
+
+    public void setQr(String qr) {
+        this.qr = qr;
     }
 
     public String getReservaId() {

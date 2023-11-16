@@ -50,7 +50,8 @@ public class PresentadorGestionReservas {
                             productosMap,
                             reservaSnapshot.child("subtotal").getValue(Integer.class),
                             reservaSnapshot.child("total").getValue(Integer.class),
-                            reservaSnapshot.child("usuarioId").getValue(String.class)
+                            reservaSnapshot.child("usuarioId").getValue(String.class),
+                            reservaSnapshot.child("qr").getValue(String.class)
                     );
 
                     // Add the ReservaModel object to the list

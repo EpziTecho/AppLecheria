@@ -50,6 +50,20 @@
                     android:layout_height="wrap_content"
                     android:layout_marginRight="8dp"
                     android:background="@drawable/spinner_background" />
+
+                <TextView
+                    android:id="@+id/tituloCantidad1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Cantidad" />
+
+                <EditText
+                    android:id="@+id/textCantidad1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/text_background" />
+
+
                 <!-- foto del producto  -->
                 <TextView
                     android:id="@+id/tituloimagen1"

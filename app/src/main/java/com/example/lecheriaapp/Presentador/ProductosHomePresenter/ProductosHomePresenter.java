@@ -64,13 +64,14 @@ public class ProductosHomePresenter {
                                                 if (!estado.equalsIgnoreCase("ELIMINADO") && !estado.equalsIgnoreCase("eliminado")) {
                                                     ProductoModel productoModel = new ProductoModel();
                                                     productoModel.setNombre(snapshot.child("nombre").getValue(String.class));
-                                                    productoModel.setEstado(estado);
-                                                    productoModel.setPrecio(String.valueOf(snapshot.child("precio").getValue(String.class)));
-                                                    productoModel.setIngredientes(snapshot.child("ingredientes").getValue(String.class));
-                                                    productoModel.setDisponibilidad(snapshot.child("disponibilidad").getValue(String.class));
                                                     productoModel.setCaloria(snapshot.child("caloria").getValue(String.class));
-                                                    productoModel.setCategoria(snapshot.child("categoria").getValue(String.class));
+                                                    productoModel.setPrecio(String.valueOf(snapshot.child("precio").getValue(String.class)));
+                                                    productoModel.setEstado(estado);
+                                                    productoModel.setDisponibilidad(snapshot.child("disponibilidad").getValue(String.class));
+                                                    productoModel.setIngredientes(snapshot.child("ingredientes").getValue(String.class));
                                                     productoModel.setImageUrl(snapshot.child("imageUrl").getValue(String.class));
+                                                    productoModel.setCategoria(snapshot.child("categoria").getValue(String.class));
+                                                    productoModel.setCodigoQR(snapshot.child("codigoQR").getValue(String.class));
                                                     arrayListProductos.add(productoModel);
                                                 }
                                             }
@@ -103,13 +104,14 @@ public class ProductosHomePresenter {
                                     if (!estado.equalsIgnoreCase("ELIMINADO") && !estado.equalsIgnoreCase("eliminado")) {
                                         ProductoModel productoModel = new ProductoModel();
                                         productoModel.setNombre(snapshot.child("nombre").getValue(String.class));
-                                        productoModel.setEstado(estado);
-                                        productoModel.setPrecio(String.valueOf(Float.parseFloat(snapshot.child("precio").getValue(String.class))));
-                                        productoModel.setIngredientes(snapshot.child("ingredientes").getValue(String.class));
-                                        productoModel.setDisponibilidad(snapshot.child("disponibilidad").getValue(String.class));
                                         productoModel.setCaloria(snapshot.child("caloria").getValue(String.class));
-                                        productoModel.setCategoria(snapshot.child("categoria").getValue(String.class));
+                                        productoModel.setPrecio(String.valueOf(snapshot.child("precio").getValue(String.class)));
+                                        productoModel.setEstado(estado);
+                                        productoModel.setDisponibilidad(snapshot.child("disponibilidad").getValue(String.class));
+                                        productoModel.setIngredientes(snapshot.child("ingredientes").getValue(String.class));
                                         productoModel.setImageUrl(snapshot.child("imageUrl").getValue(String.class));
+                                        productoModel.setCategoria(snapshot.child("categoria").getValue(String.class));
+                                        productoModel.setCodigoQR(snapshot.child("codigoQR").getValue(String.class));
                                         arrayListProductos.add(productoModel);
                                     }
                                 }
@@ -148,13 +150,14 @@ public class ProductosHomePresenter {
                                     if (!estado.equalsIgnoreCase("ELIMINADO") && !estado.equalsIgnoreCase("eliminado")) {
                                         ProductoModel productoModel = new ProductoModel();
                                         productoModel.setNombre(snapshot.child("nombre").getValue(String.class));
-                                        productoModel.setEstado(estado);
-                                        productoModel.setPrecio(String.valueOf(snapshot.child("precio").getValue(String.class)));
-                                        productoModel.setIngredientes(snapshot.child("ingredientes").getValue(String.class));
-                                        productoModel.setDisponibilidad(snapshot.child("disponibilidad").getValue(String.class));
                                         productoModel.setCaloria(snapshot.child("caloria").getValue(String.class));
-                                        productoModel.setCategoria(snapshot.child("categoria").getValue(String.class));
+                                        productoModel.setPrecio(String.valueOf(snapshot.child("precio").getValue(String.class)));
+                                        productoModel.setEstado(estado);
+                                        productoModel.setDisponibilidad(snapshot.child("disponibilidad").getValue(String.class));
+                                        productoModel.setIngredientes(snapshot.child("ingredientes").getValue(String.class));
                                         productoModel.setImageUrl(snapshot.child("imageUrl").getValue(String.class));
+                                        productoModel.setCategoria(snapshot.child("categoria").getValue(String.class));
+                                        productoModel.setCodigoQR(snapshot.child("codigoQR").getValue(String.class));
                                         arrayListProductos.add(productoModel);
                                     }
                                 }
@@ -198,13 +201,14 @@ public class ProductosHomePresenter {
                                 if (!estado.equalsIgnoreCase("ELIMINADO") && !estado.equalsIgnoreCase("eliminado")) {
                                     ProductoModel productoModel = new ProductoModel();
                                     productoModel.setNombre(snapshot.child("nombre").getValue(String.class));
-                                    productoModel.setEstado(estado);
-                                    productoModel.setPrecio(String.valueOf(snapshot.child("precio").getValue(String.class)));
-                                    productoModel.setIngredientes(snapshot.child("ingredientes").getValue(String.class));
-                                    productoModel.setDisponibilidad(snapshot.child("disponibilidad").getValue(String.class));
                                     productoModel.setCaloria(snapshot.child("caloria").getValue(String.class));
-                                    productoModel.setCategoria(snapshot.child("categoria").getValue(String.class));
+                                    productoModel.setPrecio(String.valueOf(snapshot.child("precio").getValue(String.class)));
+                                    productoModel.setEstado(estado);
+                                    productoModel.setDisponibilidad(snapshot.child("disponibilidad").getValue(String.class));
+                                    productoModel.setIngredientes(snapshot.child("ingredientes").getValue(String.class));
                                     productoModel.setImageUrl(snapshot.child("imageUrl").getValue(String.class));
+                                    productoModel.setCategoria(snapshot.child("categoria").getValue(String.class));
+                                    productoModel.setCodigoQR(snapshot.child("codigoQR").getValue(String.class));
                                     arrayListProductos.add(productoModel);
                                 }
                             }
@@ -248,13 +252,14 @@ public class ProductosHomePresenter {
                                 if (!estado.equalsIgnoreCase("ELIMINADO") && !estado.equalsIgnoreCase("eliminado")) {
                                     ProductoModel productoModel = new ProductoModel();
                                     productoModel.setNombre(snapshot.child("nombre").getValue(String.class));
-                                    productoModel.setEstado(estado);
-                                    productoModel.setPrecio(String.valueOf(snapshot.child("precio").getValue(String.class)));
-                                    productoModel.setIngredientes(snapshot.child("ingredientes").getValue(String.class));
-                                    productoModel.setDisponibilidad(snapshot.child("disponibilidad").getValue(String.class));
                                     productoModel.setCaloria(snapshot.child("caloria").getValue(String.class));
-                                    productoModel.setCategoria(snapshot.child("categoria").getValue(String.class));
+                                    productoModel.setPrecio(String.valueOf(snapshot.child("precio").getValue(String.class)));
+                                    productoModel.setEstado(estado);
+                                    productoModel.setDisponibilidad(snapshot.child("disponibilidad").getValue(String.class));
+                                    productoModel.setIngredientes(snapshot.child("ingredientes").getValue(String.class));
                                     productoModel.setImageUrl(snapshot.child("imageUrl").getValue(String.class));
+                                    productoModel.setCategoria(snapshot.child("categoria").getValue(String.class));
+                                    productoModel.setCodigoQR(snapshot.child("codigoQR").getValue(String.class));
                                     arrayListProductos.add(productoModel);
                                 }
                             }
@@ -298,13 +303,14 @@ public class ProductosHomePresenter {
                                 if (!estado.equalsIgnoreCase("ELIMINADO") && !estado.equalsIgnoreCase("eliminado")) {
                                     ProductoModel productoModel = new ProductoModel();
                                     productoModel.setNombre(snapshot.child("nombre").getValue(String.class));
-                                    productoModel.setEstado(estado);
-                                    productoModel.setPrecio(String.valueOf(snapshot.child("precio").getValue(String.class)));
-                                    productoModel.setIngredientes(snapshot.child("ingredientes").getValue(String.class));
-                                    productoModel.setDisponibilidad(snapshot.child("disponibilidad").getValue(String.class));
                                     productoModel.setCaloria(snapshot.child("caloria").getValue(String.class));
-                                    productoModel.setCategoria(snapshot.child("categoria").getValue(String.class));
+                                    productoModel.setPrecio(String.valueOf(snapshot.child("precio").getValue(String.class)));
+                                    productoModel.setEstado(estado);
+                                    productoModel.setDisponibilidad(snapshot.child("disponibilidad").getValue(String.class));
+                                    productoModel.setIngredientes(snapshot.child("ingredientes").getValue(String.class));
                                     productoModel.setImageUrl(snapshot.child("imageUrl").getValue(String.class));
+                                    productoModel.setCategoria(snapshot.child("categoria").getValue(String.class));
+                                    productoModel.setCodigoQR(snapshot.child("codigoQR").getValue(String.class));
                                     arrayListProductos.add(productoModel);
                                 }
                             }
@@ -347,13 +353,14 @@ public class ProductosHomePresenter {
                                 if (!estado.equalsIgnoreCase("ELIMINADO") && !estado.equalsIgnoreCase("eliminado")) {
                                     ProductoModel productoModel = new ProductoModel();
                                     productoModel.setNombre(snapshot.child("nombre").getValue(String.class));
-                                    productoModel.setEstado(estado);
-                                    productoModel.setPrecio(String.valueOf(snapshot.child("precio").getValue(String.class)));
-                                    productoModel.setIngredientes(snapshot.child("ingredientes").getValue(String.class));
-                                    productoModel.setDisponibilidad(snapshot.child("disponibilidad").getValue(String.class));
                                     productoModel.setCaloria(snapshot.child("caloria").getValue(String.class));
-                                    productoModel.setCategoria(snapshot.child("categoria").getValue(String.class));
+                                    productoModel.setPrecio(String.valueOf(snapshot.child("precio").getValue(String.class)));
+                                    productoModel.setEstado(estado);
+                                    productoModel.setDisponibilidad(snapshot.child("disponibilidad").getValue(String.class));
+                                    productoModel.setIngredientes(snapshot.child("ingredientes").getValue(String.class));
                                     productoModel.setImageUrl(snapshot.child("imageUrl").getValue(String.class));
+                                    productoModel.setCategoria(snapshot.child("categoria").getValue(String.class));
+                                    productoModel.setCodigoQR(snapshot.child("codigoQR").getValue(String.class));
                                     arrayListProductos.add(productoModel);
                                 }
                             }

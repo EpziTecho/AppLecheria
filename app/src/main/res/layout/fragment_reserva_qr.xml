@@ -5,10 +5,29 @@
     android:layout_height="match_parent"
     tools:context=".Vista.ReservaQrView.ReservaQrFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
+        android:id="@+id/codigoReservaTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:text="Código de Reserva" />
+
+    <ImageView
+        android:id="@+id/qrCodeImageView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_below="@id/codigoReservaTextView"
+        android:scaleType="fitCenter"
+        android:src="@drawable/baseline_table_restaurant_24" />
+
+    <TextView
+        android:id="@+id/nombreUsuarioTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/qrCodeImageView"
+        android:layout_marginTop="32dp"
+        android:gravity="center"
+        android:text="Nombre del Usuario" />
 
 </FrameLayout>

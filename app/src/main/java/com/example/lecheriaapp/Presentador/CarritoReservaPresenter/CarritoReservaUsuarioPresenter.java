@@ -1,10 +1,16 @@
 package com.example.lecheriaapp.Presentador.CarritoReservaPresenter;
 
+import android.graphics.Bitmap;
+import android.graphics.Color;
+import android.net.Uri;
+import android.os.AsyncTask;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
 import com.example.lecheriaapp.Modelo.ProductoModel;
 import com.example.lecheriaapp.Modelo.ReservaModel;
+import com.google.android.gms.tasks.Task;
+import com.google.android.gms.tasks.Tasks;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -13,11 +19,21 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.WriterException;
+import com.google.zxing.common.BitMatrix;
+import com.google.zxing.qrcode.QRCodeWriter;
 
+import java.io.ByteArrayOutputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class CarritoReservaUsuarioPresenter {
     private FirebaseAuth mAuth;
@@ -144,12 +160,21 @@ public class CarritoReservaUsuarioPresenter {
             reservaQuery.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
+                    double subtotal = 0.0;
+                    double total = 0.0;
+
                     // Busca la reserva temporal actual del usuario
                     for (DataSnapshot reservaSnapshot : dataSnapshot.getChildren()) {
                         String estado = reservaSnapshot.child("estado").getValue(String.class);
                         if ("RESERVA TEMPORAL".equals(estado)) {
-                            double subtotal = reservaSnapshot.child("subtotal").getValue(Double.class);
-                            double total = reservaSnapshot.child("total").getValue(Double.class);
+                            DataSnapshot productosSnapshot = reservaSnapshot.child("productos");
+                            for (DataSnapshot productoSnapshot : productosSnapshot.getChildren()) {
+                                ProductoModel producto = productoSnapshot.getValue(ProductoModel.class);
+                                if (producto != null) {
+                                    subtotal += producto.getCantidad() * Double.parseDouble(producto.getPrecio());
+                                }
+                            }
+                            total = subtotal;  // En este ejemplo, total es igual al subtotal
                             listener.onSubtotalYTotalObtenidos(subtotal, total);
                             return; // Sal del bucle después de obtener los datos de la reserva temporal
                         }
@@ -204,13 +229,17 @@ public class CarritoReservaUsuarioPresenter {
             @Override
             public void onIdReservaTemporalObtenido(String idReservaTemporal) {
                 if (idReservaTemporal != null) {
-                    // Actualiza el estado de la reserva temporal a "FINALIZADO"
+                    // Actualiza el estado de la reserva temporal a "FINALIZADO" en Firebase
                     DatabaseReference reservaRef = mDatabase.child("reservas").child(idReservaTemporal);
-                    reservaRef.child("estado").setValue("FINALIZADO", new DatabaseReference.CompletionListener() {
+                    Map<String, Object> estadoMap = new HashMap<>();
+                    estadoMap.put("estado", "FINALIZADO");
+
+                    reservaRef.updateChildren(estadoMap, new DatabaseReference.CompletionListener() {
                         @Override
                         public void onComplete(DatabaseError error, @NonNull DatabaseReference ref) {
                             if (error == null) {
-                                listener.onReservaFinalizada();
+                                // Genera el código QR en un hilo separado
+                                new GenerateQRCodeTask(idReservaTemporal, listener).execute();
                                 Log.d("CarritoReservaPresenter", "Reserva finalizada con éxito");
                             } else {
                                 listener.onError(error.getMessage());
@@ -229,6 +258,100 @@ public class CarritoReservaUsuarioPresenter {
         });
     }
 
+
+    private class GenerateQRCodeTask extends AsyncTask<Void, Void, String> {
+        private String idReservaTemporal;
+        private OnReservaFinalizadaListener listener;
+
+        public GenerateQRCodeTask(String idReservaTemporal, OnReservaFinalizadaListener listener) {
+            this.idReservaTemporal = idReservaTemporal;
+            this.listener = listener;
+        }
+
+        @Override
+        protected String doInBackground(Void... voids) {
+            // Generar el código QR y obtener su URL
+            return generarYSubirCodigoQR(idReservaTemporal);
+        }
+
+        @Override
+        protected void onPostExecute(String qrCodeUrl) {
+            // Actualizar el atributo qr de la reserva con la URL del código QR
+            actualizarQREnReserva(idReservaTemporal, qrCodeUrl, listener);
+        }
+    }
+    private String generarYSubirCodigoQR(String idReservaTemporal) {
+        // Generar el código QR
+        String qrCodeContent = "Contenido del código QR";  // Puedes personalizar esto según tus necesidades
+        Bitmap qrCodeBitmap = generarCodigoQR(qrCodeContent);
+
+        // Subir el código QR al almacenamiento de Firebase
+        String qrCodeFileName = "qr_code_" + idReservaTemporal + ".png";
+        String qrCodeUrl = subirCodigoQRAlStorage(qrCodeBitmap, qrCodeFileName);
+
+        return qrCodeUrl;
+    }
+    private String subirCodigoQRAlStorage(Bitmap qrCodeBitmap, String fileName) {
+        // Obtener la referencia al Storage de Firebase
+        StorageReference storageRef = FirebaseStorage.getInstance().getReference().child("qrcodes").child(fileName);
+
+        // Convertir el Bitmap a bytes
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        qrCodeBitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);
+        byte[] data = baos.toByteArray();
+
+        // Subir el código QR al Storage
+        UploadTask uploadTask = storageRef.putBytes(data);
+        Task<Uri> urlTask = uploadTask.continueWithTask(task -> {
+            if (!task.isSuccessful()) {
+                throw task.getException();
+            }
+
+            // Continuar con la tarea para obtener la URL de descarga
+            return storageRef.getDownloadUrl();
+        });
+
+        try {
+            // Obtener la URL de descarga del código QR
+            return Tasks.await(urlTask).toString();
+        } catch (Exception e) {
+            Log.e("CarritoReservaPresenter", "Error al subir el código QR al Storage: " + e.getMessage());
+            return null;
+        }
+    }
+
+    private void actualizarQREnReserva(String idReservaTemporal, String qrCodeUrl, OnReservaFinalizadaListener listener) {
+        // Actualizar el atributo qr de la reserva con la URL del código QR
+        DatabaseReference reservaRef = mDatabase.child("reservas").child(idReservaTemporal);
+        reservaRef.child("qr").setValue(qrCodeUrl, (error, ref) -> {
+            if (error == null) {
+                listener.onReservaFinalizada();
+                Log.d("CarritoReservaPresenter", "Reserva finalizada con éxito");
+            } else {
+                listener.onError(error.getMessage());
+            }
+        });
+    }
+    private Bitmap generarCodigoQR(String content) {
+        QRCodeWriter writer = new QRCodeWriter();
+        try {
+            BitMatrix bitMatrix = writer.encode(content, BarcodeFormat.QR_CODE, 512, 512);
+            int width = bitMatrix.getWidth();
+            int height = bitMatrix.getHeight();
+            Bitmap bmp = Bitmap.createBitmap(width, height, Bitmap.Config.RGB_565);
+
+            for (int x = 0; x < width; x++) {
+                for (int y = 0; y < height; y++) {
+                    bmp.setPixel(x, y, bitMatrix.get(x, y) ? Color.BLACK : Color.WHITE);
+                }
+            }
+
+            return bmp;
+        } catch (WriterException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 
     public void obtenerEstadoReservaTemporal(final OnEstadoReservaObtenidoListener listener) {
         FirebaseUser currentUser = mAuth.getCurrentUser();

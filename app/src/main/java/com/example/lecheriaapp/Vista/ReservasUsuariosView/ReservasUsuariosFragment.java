@@ -14,10 +14,11 @@ import com.example.lecheriaapp.Modelo.ReservaModel;
 import com.example.lecheriaapp.Presentador.GestionReservasPresenter.PresentadorGestionReservas;
 import com.example.lecheriaapp.Presentador.GestionReservasPresenter.PresentadorGestionReservas.GestionReservasView;
 import com.example.lecheriaapp.R;
+import com.example.lecheriaapp.Vista.DetallesReservaView.DetalleReservaFragment;
 
 import java.util.List;
 
-public class ReservasUsuariosFragment extends Fragment implements GestionReservasView {
+public class ReservasUsuariosFragment extends Fragment implements GestionReservasView, ReservasAdapter.OnItemClickListener {
     private RecyclerView recyclerView;
     private ReservasAdapter reservasAdapter;
     private PresentadorGestionReservas presentadorGestionReservas;
@@ -45,6 +46,9 @@ public class ReservasUsuariosFragment extends Fragment implements GestionReserva
         reservasAdapter = new ReservasAdapter();
         recyclerView.setAdapter(reservasAdapter);
 
+        // Configurar el manejador de clics en el adaptador
+        reservasAdapter.setOnItemClickListener(this);
+
         presentadorGestionReservas = new PresentadorGestionReservas(this);
         presentadorGestionReservas.obtenerReservasDesdeFirebase(); // Call to get reservations
 
@@ -59,5 +63,17 @@ public class ReservasUsuariosFragment extends Fragment implements GestionReserva
     @Override
     public void mostrarReservas(List<ReservaModel> reservas) {
         reservasAdapter.actualizarReservas(reservas);
+    }
+
+    // Método implementado desde OnItemClickListener
+    @Override
+    public void onItemClick(ReservaModel reserva) {
+        // Manejar el clic en la reserva
+        // Aquí es donde deberías navegar al fragmento de detalles
+        Fragment detalleReservaFragment = DetalleReservaFragment.newInstance(reserva);
+        requireActivity().getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fragment_container, detalleReservaFragment)
+                .addToBackStack(null)
+                .commit();
     }
 }

@@ -1,9 +1,19 @@
+<!-- item_productos_detalle_reserva.xml -->
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:padding="8dp">
+
+    <ImageView
+        android:id="@+id/imageViewProducto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scaleType="fitCenter"
+        android:adjustViewBounds="true"
+        android:contentDescription="asdasdasda"
+        android:textSize="16sp"/>
 
     <TextView
         android:id="@+id/textViewNombreProducto"

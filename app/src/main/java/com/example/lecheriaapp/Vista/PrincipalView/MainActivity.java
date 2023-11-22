@@ -25,6 +25,7 @@ import com.bumptech.glide.request.RequestOptions;
 import com.example.lecheriaapp.Presentador.CarritoReservaPresenter.CarritoReservaUsuarioPresenter;
 import com.example.lecheriaapp.Vista.CarritoDeReservasView.CarritoDeReservaFragment;
 import com.example.lecheriaapp.Vista.CarritoDeReservasView.CarritoDeReservaVacioFragment;
+import com.example.lecheriaapp.Vista.FaqView.FaqFragment;
 import com.example.lecheriaapp.Vista.FavoritosUsuarioView.FavoritosUsuarioFragment;
 import com.example.lecheriaapp.Vista.HomeView.HomeFragment;
 import com.example.lecheriaapp.Modelo.UserModel;
@@ -224,7 +225,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.nav_reservas:
                 replaceFragment(new ReservasUsuariosFragment());
                 break;
-
+            case R.id.nav_faq:
+                replaceFragment(new FaqFragment());
+                break;
             case R.id.nav_logout:
                 // Cerrar la sesión actual y redirigir a la actividad de inicio de sesión con un mensaje de despedida,
                 // se refresca la actividad para evitar que el usuario pueda volver a ella usando el botón "Atrás"

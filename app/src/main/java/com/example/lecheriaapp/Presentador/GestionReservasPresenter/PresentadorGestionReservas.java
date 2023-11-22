@@ -29,20 +29,20 @@ public class PresentadorGestionReservas {
                 List<ReservaModel> reservas = new ArrayList<>();
 
                 for (DataSnapshot reservaSnapshot : dataSnapshot.getChildren()) {
-                    // For each reservation, get the data snapshot
+                    // Para cada reserva, obtener el DataSnapshot
                     DataSnapshot productosSnapshot = reservaSnapshot.child("productos");
 
-                    // Create a Map to hold the products
+                    // Crear un mapa para contener los productos
                     Map<String, ProductoModel> productosMap = new HashMap<>();
 
-                    // Loop through the products snapshot
+                    // Iterar sobre el DataSnapshot de productos
                     for (DataSnapshot productoSnapshot : productosSnapshot.getChildren()) {
-                        // Get each product and add it to the productosMap
+                        // Obtener cada producto y agregarlo al productosMap
                         ProductoModel producto = productoSnapshot.getValue(ProductoModel.class);
                         productosMap.put(productoSnapshot.getKey(), producto);
                     }
 
-                    // Create a ReservaModel object and set its values
+                    // Crear un objeto ReservaModel y establecer sus valores
                     ReservaModel reserva = new ReservaModel(
                             reservaSnapshot.getKey(),
                             reservaSnapshot.child("estado").getValue(String.class),
@@ -50,10 +50,11 @@ public class PresentadorGestionReservas {
                             productosMap,
                             reservaSnapshot.child("subtotal").getValue(Integer.class),
                             reservaSnapshot.child("total").getValue(Integer.class),
-                            reservaSnapshot.child("usuarioId").getValue(String.class)
+                            reservaSnapshot.child("usuarioId").getValue(String.class),
+                            reservaSnapshot.child("qr").getValue(String.class)
                     );
 
-                    // Add the ReservaModel object to the list
+                    // Agregar el objeto ReservaModel a la lista
                     reservas.add(reserva);
                 }
 

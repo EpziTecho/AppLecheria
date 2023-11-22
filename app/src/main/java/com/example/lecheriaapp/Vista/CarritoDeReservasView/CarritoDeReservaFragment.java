@@ -16,6 +16,7 @@ import com.example.lecheriaapp.Modelo.ProductoModel;
 import com.example.lecheriaapp.Presentador.CarritoReservaPresenter.CarritoReservaUsuarioPresenter;
 import com.example.lecheriaapp.R;
 import com.example.lecheriaapp.Vista.HomeView.HomeFragment;
+import com.example.lecheriaapp.Vista.ReservaQrView.ReservaQrFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -84,8 +85,8 @@ public class CarritoDeReservaFragment extends Fragment {
             public void onReservaFinalizada() {
                 // La reserva se ha finalizado correctamente, puedes realizar acciones adicionales si es necesario
                 Toast.makeText(getContext(), "Reserva finalizada correctamente", Toast.LENGTH_SHORT).show();
-                // Redirige a HomeFragment
-                getFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomeFragment()).commit();
+                // Redirige a ReservaQrFragment
+                mostrarReservaQrFragment();
             }
 
             @Override
@@ -93,6 +94,25 @@ public class CarritoDeReservaFragment extends Fragment {
                 // Manejar errores si es necesario, por ejemplo, mostrar un mensaje de error
             }
         });
+    }
+
+    private void mostrarReservaQrFragment() {
+        // Obtén el código de reserva y el nombre de usuario de los TextView
+        String codigoReserva = textViewIdReserva.getText().toString();
+        String nombreUsuario = textViewNombreUsuario.getText().toString();
+
+        // Crea una instancia del fragmento ReservaQrFragment y pasa la URL del código QR,
+        // el código de reserva y el nombre de usuario reales
+        ReservaQrFragment reservaQrFragment = ReservaQrFragment.newInstance(
+                "https://firebasestorage.googleapis.com/v0/b/lalecheria.appspot.com/o/qrcodes%2Fqr_code_-NjP3LSYyRkB5VYd4Do8.png?alt=media&token=be6d7c32-1ab4-42ff-8047-ce7c4059fbe9",
+                codigoReserva,
+                nombreUsuario
+        );
+
+        // Reemplaza el fragmento actual con ReservaQrFragment
+        getFragmentManager().beginTransaction()
+                .replace(R.id.fragment_container, reservaQrFragment)
+                .commit();
     }
 
     private void obtenerEstadoReservaTemporal() {

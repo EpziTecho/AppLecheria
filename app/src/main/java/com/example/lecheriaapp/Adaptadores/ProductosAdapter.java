@@ -16,63 +16,57 @@ import com.example.lecheriaapp.R;
 
 import java.util.List;
 
-public class ProductosAdapter extends RecyclerView.Adapter<ProductosAdapter.ProductosViewHolder> {
+// ProductosAdapter.java
+public class ProductosAdapter extends RecyclerView.Adapter<ProductosAdapter.ProductoViewHolder> {
 
     private Context context;
-    private List<ProductoModel> listaProductos;
+    private List<ProductoModel> productos;
 
-    public ProductosAdapter(Context context, List<ProductoModel> listaProductos) {
+    public ProductosAdapter(Context context, List<ProductoModel> productos) {
         this.context = context;
-        this.listaProductos = listaProductos;
+        this.productos = productos;
     }
 
-    // Método que crea una nueva vista de item_producto al ser requerida por el RecyclerView
     @NonNull
     @Override
-    public ProductosViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        // Infla la vista del layout item_producto.xml
-        View view = LayoutInflater.from(context).inflate(R.layout.item_producto, parent, false);
-        return new ProductosViewHolder(view);
+    public ProductoViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(context).inflate(R.layout.item_productos_detalle_reserva, parent, false);
+        return new ProductoViewHolder(view);
     }
 
-    // Método que actualiza el contenido de una vista de item_producto al ser requerido por el RecyclerView
     @Override
-    public void onBindViewHolder(@NonNull ProductosViewHolder holder, int position) {
-        // Obtiene los datos del producto en la posición indicada
-        ProductoModel producto = listaProductos.get(position);
+    public void onBindViewHolder(@NonNull ProductoViewHolder holder, int position) {
+        ProductoModel producto = productos.get(position);
 
-        // Actualiza los elementos de la vista con los datos del producto
-        holder.nombre.setText(producto.getNombre());
-        holder.descripcion.setText(producto.getCaloria());
-        holder.precio.setText(producto.getPrecio());
-        // Carga la imagen del producto utilizando Glide, una librería para la carga de imágenes
-        Glide.with(context).load(producto.getImageUrl()).into(holder.imagen);
+        // Cargar la imagen con Glide
+        Glide.with(context)
+                .load(producto.getImageUrl())  // Asegúrate de tener un método getUrlImagen() en tu modelo
+                .into(holder.imageViewProducto);
+
+        // Resto del código para establecer otros datos en el ViewHolder
+        holder.textViewNombreProducto.setText(producto.getNombre());
+        holder.textViewCantidad.setText("Cantidad: " + producto.getCantidad());
+        holder.textViewPrecio.setText("Precio: " + producto.getPrecio());
     }
 
-    // Método que indica la cantidad de elementos que hay en la lista de productos
     @Override
     public int getItemCount() {
-        return listaProductos.size();
+        return productos.size();
     }
 
-    // Clase que representa una vista de item_producto
-    public static class ProductosViewHolder extends RecyclerView.ViewHolder {
+    // ViewHolder para representar cada item del RecyclerView
+    public static class ProductoViewHolder extends RecyclerView.ViewHolder {
+        TextView textViewNombreProducto;
+        ImageView imageViewProducto;
+        TextView textViewCantidad;
+        TextView textViewPrecio;
 
-        public ImageView imagen;
-        public TextView nombre;
-        public TextView descripcion;
-        public TextView precio;
-        public TextView disponibilidad;
-
-        public ProductosViewHolder(@NonNull View itemView) {
+        public ProductoViewHolder(@NonNull View itemView) {
             super(itemView);
-
-            // Obtiene los elementos de la vista y los asigna a las variables
-            imagen = itemView.findViewById(R.id.producto_imagen);
-            nombre = itemView.findViewById(R.id.producto_nombre);
-            descripcion = itemView.findViewById(R.id.producto_descripcion);
-            precio = itemView.findViewById(R.id.producto_precio);
-            //disponibilidad = itemView.findViewById(R.id.producto_disponibilidad);
+            textViewNombreProducto = itemView.findViewById(R.id.textViewNombreProducto);
+            imageViewProducto = itemView.findViewById(R.id.imageViewProducto);
+            textViewCantidad = itemView.findViewById(R.id.textViewCantidad);
+            textViewPrecio = itemView.findViewById(R.id.textViewPrecio);
         }
     }
 }

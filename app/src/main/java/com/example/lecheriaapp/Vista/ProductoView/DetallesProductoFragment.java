@@ -1,15 +1,19 @@
 package com.example.lecheriaapp.Vista.ProductoView;
 
+import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
@@ -42,7 +46,7 @@ public class DetallesProductoFragment extends Fragment {
         TextView categoriaTextView = rootView.findViewById(R.id.producto_categoria);
         Button botonFavorito = rootView.findViewById(R.id.btn_favorito);
 
-        Bundle args = getArguments();
+        Bundle args = requireArguments();
         if (args != null) {
             String nombre = args.getString("nombre");
             String calorias = args.getString("caloria");
@@ -78,7 +82,8 @@ public class DetallesProductoFragment extends Fragment {
                     .load(imageUrl)
                     .into(imagenImageView);
         }
-        reservarProductosUsuario = new ReservarProductosUsuario();
+        reservarProductosUsuario = new ReservarProductosUsuario(requireContext());
+
 
         Spinner localSpinner = rootView.findViewById(R.id.spinner_local);
         EditText cantidadEditText = rootView.findViewById(R.id.editText_cantidad);
@@ -102,17 +107,30 @@ public class DetallesProductoFragment extends Fragment {
                         String local = localSpinner.getSelectedItem().toString();
 
                         reservarProductosUsuario.reservarProducto(producto, cantidad, local);
+
+                        // Cerrar el teclado virtual
+                        InputMethodManager imm = (InputMethodManager) requireContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+                        imm.hideSoftInputFromWindow(rootView.getWindowToken(), 0);
                     } else {
-                        // Manejar el caso en que el EditText está vacío
-                        // ...
+                        // Mostrar un mensaje si el EditText está vacío
+                        mostrarMensaje("Ingrese una cantidad");
                     }
                 } else {
                     // Manejar el caso en que cantidadEditText es nulo
-                    // ...
+                    mostrarMensaje("Error al obtener el EditText de cantidad");
                 }
             }
         });
 
         return rootView;
+    }
+
+    // Método para mostrar mensajes
+    private void mostrarMensaje(String mensaje) {
+        if (getContext() != null) {
+            Toast.makeText(getContext(), mensaje, Toast.LENGTH_SHORT).show();
+        } else {
+            Log.e(TAG, "Contexto es nulo al mostrar mensaje");
+        }
     }
 }

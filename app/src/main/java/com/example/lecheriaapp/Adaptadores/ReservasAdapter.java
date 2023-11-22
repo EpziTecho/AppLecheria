@@ -12,14 +12,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ReservasAdapter extends RecyclerView.Adapter<ReservasAdapter.ReservaViewHolder> {
+
     private List<ReservaModel> reservasList;
+    private OnItemClickListener onItemClickListener;
+
+    public interface OnItemClickListener {
+        void onItemClick(ReservaModel reserva);
+    }
+
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        this.onItemClickListener = listener;
+    }
 
     public ReservasAdapter() {
         this.reservasList = new ArrayList<>();
-    }
-
-    public ReservasAdapter(List<ReservaModel> reservasList) {
-        this.reservasList = reservasList;
     }
 
     @NonNull
@@ -33,6 +39,16 @@ public class ReservasAdapter extends RecyclerView.Adapter<ReservasAdapter.Reserv
     public void onBindViewHolder(@NonNull ReservaViewHolder holder, int position) {
         ReservaModel reserva = reservasList.get(position);
         holder.bind(reserva);
+
+        // Manejar clics en el elemento
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (onItemClickListener != null) {
+                    onItemClickListener.onItemClick(reserva);
+                }
+            }
+        });
     }
 
     @Override
@@ -50,8 +66,8 @@ public class ReservasAdapter extends RecyclerView.Adapter<ReservasAdapter.Reserv
         private TextView textViewIdReserva;
         private TextView textViewFecha;
         private TextView textViewTotal;
-
         private TextView textViewEstado;
+
         public ReservaViewHolder(@NonNull View itemView) {
             super(itemView);
             textViewIdReserva = itemView.findViewById(R.id.textViewIdReserva);
@@ -65,7 +81,6 @@ public class ReservasAdapter extends RecyclerView.Adapter<ReservasAdapter.Reserv
             textViewFecha.setText(reserva.getFecha());
             textViewEstado.setText(reserva.getEstado());
             textViewTotal.setText(String.valueOf(reserva.getTotal()));
-
         }
     }
 }

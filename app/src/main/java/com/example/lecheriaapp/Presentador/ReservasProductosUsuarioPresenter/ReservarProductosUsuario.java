@@ -1,9 +1,15 @@
 package com.example.lecheriaapp.Presentador.ReservasProductosUsuarioPresenter;
 
+import android.content.Context;
 import android.util.Log;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
 
+import com.example.lecheriaapp.R;
+import com.example.lecheriaapp.Vista.HomeView.HomeFragment;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -17,11 +23,13 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class ReservarProductosUsuario {
+    private Context context;
     private FirebaseAuth mAuth;
     private DatabaseReference mDatabase;
     private static final String TAG = "ReservarProductosUsuario";
 
-    public ReservarProductosUsuario() {
+    public ReservarProductosUsuario(Context context) {
+        this.context = context;
         mAuth = FirebaseAuth.getInstance();
         mDatabase = FirebaseDatabase.getInstance().getReference();
     }
@@ -37,7 +45,8 @@ public class ReservarProductosUsuario {
                     ProductoModel producto = productoSnapshot.getValue(ProductoModel.class);
                     if (producto != null) {
                         double precio = Double.parseDouble(producto.getPrecio());
-                        subtotal += precio;
+                        int cantidad = producto.getCantidad();
+                        subtotal += precio * cantidad;
                     }
                 }
                 double total = subtotal;
@@ -106,12 +115,15 @@ public class ReservarProductosUsuario {
         actualizarFechaYHoraReserva(reservaSnapshot.getKey());
 
         calcularSubtotalYTotal(reservaSnapshot.getKey());
+        Toast.makeText(context, "Producto reservado correctamente", Toast.LENGTH_SHORT).show();
+        regresarAlHome();
     }
 
     private void crearNuevaReserva(String userId, ProductoModel producto, int cantidad, String local) {
         DatabaseReference reservaRef = mDatabase.child("reservas").push();
         reservaRef.child("usuarioId").setValue(userId);
         reservaRef.child("estado").setValue("RESERVA TEMPORAL");
+        reservaRef.child("qr").setValue("null");
         DatabaseReference productosRef = reservaRef.child("productos");
         String productoId = "producto00";
         DatabaseReference productoRef = productosRef.child(productoId);
@@ -124,8 +136,23 @@ public class ReservarProductosUsuario {
         actualizarFechaYHoraReserva(reservaRef.getKey());
 
         calcularSubtotalYTotal(reservaRef.getKey());
+        Toast.makeText(context, "Producto reservado correctamente", Toast.LENGTH_SHORT).show();
+        regresarAlHome();
     }
 
+
+    private void regresarAlHome() {
+        // Reemplaza el fragmento actual con el HomeFragment
+        if (context != null) {
+            FragmentManager fragmentManager = ((FragmentActivity) context).getSupportFragmentManager();
+            fragmentManager.beginTransaction()
+                    .replace(R.id.fragment_container, new HomeFragment())
+                    .addToBackStack(null)
+                    .commit();
+        } else {
+            Log.e(TAG, "Contexto es nulo al intentar regresar al Home");
+        }
+    }
     private void actualizarFechaYHoraReserva(String reservaId) {
         // Obtener la fecha y hora actuales del sistema
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");

@@ -68,6 +68,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/text_background"
             app:layout_constraintEnd_toEndOf="parent"
+            android:inputType="number"
             app:layout_constraintHorizontal_bias="0.088"
             app:layout_constraintStart_toEndOf="@+id/spinnerEstado"
             app:layout_constraintTop_toBottomOf="@+id/tituloCantidad" />

@@ -56,6 +56,7 @@
     <string name="titulo_direccion4">Sede Ate</string>
     <string name="titulo_subdireccion4">Av. Nicolás Ayllón con, Ate 15487</string>
     <string name="titulo_descripcion4">Al frente del Real Plaza.</string>
-
+    <string name="favorito1">En inicio se visualiza todos los productos, para agregar un producto a tus favorito tienes que hacer click en el icono de corazón que tiene cada producto, se visualizara un mensaje describiendo dicha acción. </string>
+    <string name="favorito2">Para poder tus productos agregados a favoritos, debes darle click a las tres rayas y a continuación darle click en "Favoritos", de esta manera podrás visualizar todos tus productos favoritos.</string>
 
 </resources>

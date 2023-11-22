@@ -93,8 +93,10 @@
             android:layout_marginTop="16dp"
             android:text="◐ Ver favoritos"
             android:textColor="@android:color/black"
-            app:layout_constraintTop_toBottomOf="@+id/imageView3"
-            tools:layout_editor_absoluteX="38dp" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.125"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView3" />
 
         <TextView
             android:id="@+id/textView18"
@@ -107,12 +109,13 @@
 
         <ImageView
             android:id="@+id/imageView5"
-            android:layout_width="405dp"
-            android:layout_height="238dp"
+            android:layout_width="390dp"
+            android:layout_height="232dp"
             android:layout_marginTop="4dp"
             android:src="@drawable/favorito2"
-            app:layout_constraintTop_toBottomOf="@+id/textView18"
-            tools:layout_editor_absoluteX="-10dp" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView18" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

@@ -45,7 +45,10 @@ public class ReservarProductosUsuario {
                     ProductoModel producto = productoSnapshot.getValue(ProductoModel.class);
                     if (producto != null) {
                         double precio = Double.parseDouble(producto.getPrecio());
-                        int cantidad = producto.getCantidad();
+
+                        String cantidadStr = producto.getCantidad();
+                        // Convertir las cadenas a valores numéricos
+                        int cantidad = Integer.parseInt(cantidadStr);
                         subtotal += precio * cantidad;
                     }
                 }
@@ -107,7 +110,9 @@ public class ReservarProductosUsuario {
 
         DatabaseReference productoRef = productosRef.child(productoId);
         // Modificar la cantidad y local del producto antes de agregarlo a la reserva
-        producto.setCantidad(cantidad);
+
+        String nuevaCantidadStr = Integer.toString(cantidad);
+        producto.setCantidad(nuevaCantidadStr);
         producto.setLocal(local);
         productoRef.setValue(producto);
 
@@ -128,7 +133,8 @@ public class ReservarProductosUsuario {
         String productoId = "producto00";
         DatabaseReference productoRef = productosRef.child(productoId);
         // Modificar la cantidad y local del producto antes de agregarlo a la reserva
-        producto.setCantidad(cantidad);
+        String nuevaCantidadStr = Integer.toString(cantidad);
+        producto.setCantidad(nuevaCantidadStr);
         producto.setLocal(local);
         productoRef.setValue(producto);
 

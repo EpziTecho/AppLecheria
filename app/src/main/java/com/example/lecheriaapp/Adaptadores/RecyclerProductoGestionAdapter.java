@@ -79,9 +79,10 @@ public class RecyclerProductoGestionAdapter extends RecyclerView.Adapter<Recycle
                 String estado = productoModel.getEstado();
                 String imagen = productoModel.getImageUrl();
                 String codigoQR = productoModel.getCodigoQR();
+                String cantidad = productoModel.getCantidad();
                 int position = getRealPosition(holder.getAdapterPosition());
 
-                Fragment editarFragment = EditarProductosFragment.newInstance(nombre, calorias, precio, disponibilidad, categoria, ingredientes, estado, imagen,codigoQR, position);
+                Fragment editarFragment = EditarProductosFragment.newInstance(nombre, calorias, precio, disponibilidad, categoria, ingredientes, estado, imagen,codigoQR,cantidad,position);
                 FragmentManager fragmentManager = ((AppCompatActivity) mContext).getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.replace(R.id.fragment_container, editarFragment);

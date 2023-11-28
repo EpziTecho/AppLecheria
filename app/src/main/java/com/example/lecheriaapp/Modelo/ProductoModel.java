@@ -10,7 +10,7 @@ public class ProductoModel {
     private String imageUrl;
     private String categoria;
     private String codigoQR;
-    private int cantidad;
+    private String cantidad;
     private String local;
 
     public ProductoModel(String nombre, String caloria, String precio, String estado, String disponibilidad, String ingredientes, String imageUrl, String categoria, String codigoQR) {
@@ -101,12 +101,13 @@ public class ProductoModel {
         this.categoria = categoria;
     }
 
-    public void setCantidad(int cantidad) {
-        this.cantidad = cantidad;
+
+    public String getCantidad() {
+        return cantidad;
     }
 
-    public int getCantidad() {
-        return cantidad;
+    public void setCantidad(String cantidad) {
+        this.cantidad = cantidad;
     }
 
     public void setLocal(String local) {

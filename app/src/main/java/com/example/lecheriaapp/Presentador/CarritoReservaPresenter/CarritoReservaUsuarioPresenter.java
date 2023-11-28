@@ -171,7 +171,16 @@ public class CarritoReservaUsuarioPresenter {
                             for (DataSnapshot productoSnapshot : productosSnapshot.getChildren()) {
                                 ProductoModel producto = productoSnapshot.getValue(ProductoModel.class);
                                 if (producto != null) {
-                                    subtotal += producto.getCantidad() * Double.parseDouble(producto.getPrecio());
+                                    // Obtener la cantidad y el precio como strings desde el producto
+                                    String cantidadStr = producto.getCantidad();
+                                    String precioStr = producto.getPrecio();
+
+                                    // Convertir las cadenas a valores numéricos
+                                    int cantidad = Integer.parseInt(cantidadStr);
+                                    double precio = Double.parseDouble(precioStr);
+
+                                    // Realizar la operación y acumular en subtotal
+                                    subtotal += cantidad * precio;
                                 }
                             }
                             total = subtotal;  // En este ejemplo, total es igual al subtotal

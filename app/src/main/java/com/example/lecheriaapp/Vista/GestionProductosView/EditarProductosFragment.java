@@ -44,7 +44,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 public class EditarProductosFragment extends Fragment implements View.OnClickListener {
 
-    private EditText mTextNombreProducto, mTextCalorias, mTextPrecio, mTextIngredientes,mTextQr;
+    private EditText mTextNombreProducto, mTextCalorias, mTextPrecio, mTextIngredientes,mTextQr,mTextCantidad;
     private Button mBtnGuardar, mBtnCancelar, mBtnSeleccionarImagen;
     private PresentadorEditarProductos mPresentador;
     private int mPosicion;
@@ -55,7 +55,7 @@ public class EditarProductosFragment extends Fragment implements View.OnClickLis
     String imageUrl;
     private static final int REQUEST_PERMISSIONS = 1;
 
-    public static EditarProductosFragment newInstance(String nombre, String calorias, String precio, String disponibilidad, String categoria, String ingredientes, String estado, String imagen,String codigoQR, int posicion) {
+    public static EditarProductosFragment newInstance(String nombre, String calorias, String precio, String disponibilidad, String categoria, String ingredientes, String estado, String imagen,String codigoQR,String cantidad, int posicion) {
         EditarProductosFragment fragment = new EditarProductosFragment();
         Bundle args = new Bundle();
         args.putString("nombre", nombre);
@@ -67,6 +67,7 @@ public class EditarProductosFragment extends Fragment implements View.OnClickLis
         args.putString("estado", estado);
         args.putString("imageUrl", imagen);
         args.putString("codigoQR", codigoQR);
+        args.putString("cantidad",cantidad);
         args.putInt("posicion", posicion);
         fragment.setArguments(args);
         return fragment;
@@ -86,6 +87,7 @@ public class EditarProductosFragment extends Fragment implements View.OnClickLis
         mSpinnerDisponibilidad = view.findViewById(R.id.spinnerDisponibilidad1);
         mSpinnerCategoria = view.findViewById(R.id.spinnerCategoria1);
         mImageView = view.findViewById(R.id.selectedImageView1);
+        mTextCantidad = view.findViewById(R.id.textCantidad1);
         mBtnSeleccionarImagen = view.findViewById(R.id.selectImageButton1);
         mTextQr = view.findViewById(R.id.textQR);
         mBtnGuardar.setOnClickListener(this);
@@ -101,6 +103,7 @@ public class EditarProductosFragment extends Fragment implements View.OnClickLis
             mTextCalorias.setText(args.getString("caloria"));
             mTextPrecio.setText(String.valueOf(args.getString("precio")));
             mTextIngredientes.setText(args.getString("ingredientes"));
+            mTextCantidad.setText(args.getString("cantidad"));
             mPosicion = args.getInt("posicion");
 
             // Establecer los valores de los spinners
@@ -162,7 +165,7 @@ public class EditarProductosFragment extends Fragment implements View.OnClickLis
             String disponibilidad = mSpinnerDisponibilidad.getSelectedItem().toString();
             String categoria = mSpinnerCategoria.getSelectedItem().toString();
             String Qr = mTextQr.getText().toString().trim();
-
+            String cantidad = mTextCantidad.getText().toString().trim();
             if (!nombreProducto.isEmpty() && !calorias.isEmpty() && !precio.isEmpty() && !ingredientes.isEmpty()) {
                 // Crear un mapa para almacenar los datos del producto
                 Map<String, Object> productoData = new HashMap<>();
@@ -174,6 +177,7 @@ public class EditarProductosFragment extends Fragment implements View.OnClickLis
                 productoData.put("ingredientes", ingredientes);
                 productoData.put("estado", estado);
                 productoData.put("codigoQR", Qr);
+                productoData.put("cantidad",cantidad);
 
                 if (mImageUri != null) {
                     productoData.put("imageUrl", mImageUri.toString());

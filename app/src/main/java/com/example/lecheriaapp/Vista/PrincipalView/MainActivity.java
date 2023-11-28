@@ -107,12 +107,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         MenuItem gestionProductosItem = navMenu.findItem(R.id.nav_gestionProductos);
         MenuItem gestionProductosItemOculto1 = navMenu.findItem(R.id.nav_favoritos);
         MenuItem gestionProductosItemOculto2 = navMenu.findItem(R.id.nav_promosperfil);
+        MenuItem reservasItemOculto3= navMenu.findItem(R.id.nav_reservas);
 
         mAuth = FirebaseAuth.getInstance();
 
         if (mAuth.getCurrentUser() != null) {
             loginItem.setVisible(false);
             logoutItem.setVisible(true);
+            reservasItemOculto3.setVisible(true);
 
             String currentUserId = mAuth.getCurrentUser().getUid();
             mDatabase.child("Usuarios").child(currentUserId).child("rol").get().addOnCompleteListener(task -> {
@@ -138,6 +140,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 }
             });
         } else {
+            reservasItemOculto3.setVisible(false);
             loginItem.setVisible(true);
             logoutItem.setVisible(false);
             gestionProductosItem.setVisible(false);

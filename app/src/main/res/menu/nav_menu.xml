@@ -33,6 +33,10 @@
             android:id="@+id/nav_reservas"
             android:icon="@drawable/baseline_calendar_month_24"
             android:title="Reservas" />
+        <item
+            android:id="@+id/nav_dashboard"
+            android:icon="@drawable/baseline_calendar_month_24"
+            android:title="Dashboard" />
     </group>
     <group android:checkableBehavior="single">
     <item

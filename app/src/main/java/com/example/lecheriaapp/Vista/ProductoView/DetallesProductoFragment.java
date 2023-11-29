@@ -88,13 +88,34 @@ public class DetallesProductoFragment extends Fragment {
         Spinner localSpinner = rootView.findViewById(R.id.spinner_local);
         EditText cantidadEditText = rootView.findViewById(R.id.editText_cantidad);
 
-        localesList = new ArrayList<>();
-        localesList.add("Local 1");
-        localesList.add("Local 2");
+        // Obtener la disponibilidad del argumento
+        String disponibilidad = args.getString("disponibilidad");
 
+// Crear una nueva lista y agregar la disponibilidad solo si no está en la lista
+        List<String> localesList = new ArrayList<>();
+        if (!localesList.contains(disponibilidad)) {
+            localesList.add(disponibilidad);
+        }
+
+// Agregar los locales solo si no están en la lista
+        if (!localesList.contains("Centro")) {
+            localesList.add("Centro");
+        }
+        if (!localesList.contains("Ate")) {
+            localesList.add("Ate");
+        }
+        if (!localesList.contains("SMP")) {
+            localesList.add("SMP");
+        }
+        if (!localesList.contains("Callao")) {
+            localesList.add("Callao");
+        }
+
+// Crear el adaptador y configurar el Spinner
         ArrayAdapter<String> localAdapter = new ArrayAdapter<>(requireContext(), android.R.layout.simple_spinner_item, localesList);
         localAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         localSpinner.setAdapter(localAdapter);
+
 
         Button ReservasButton = rootView.findViewById(R.id.btn_reservas);
         ReservasButton.setOnClickListener(new View.OnClickListener() {

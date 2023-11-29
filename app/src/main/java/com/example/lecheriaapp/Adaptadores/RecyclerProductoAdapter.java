@@ -174,6 +174,9 @@ public class RecyclerProductoAdapter extends RecyclerView.Adapter<RecyclerProduc
             });
         }
     }
+    public ArrayList<ProductoModel> obtenerTodosLosProductos() {
+        return arrayListProductos;
+    }
 
     private void agregarAFavoritos(ProductoModel producto, Button botonFavoritos) {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -286,6 +289,7 @@ public class RecyclerProductoAdapter extends RecyclerView.Adapter<RecyclerProduc
                 .addToBackStack(null)
                 .commit();
     }
+
     public interface FavoritosUpdateListener {
         void onFavoritosUpdated();
     }

@@ -1,5 +1,6 @@
 package com.example.lecheriaapp.Vista.CarritoDeReservasView;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
@@ -22,7 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CarritoDeReservaFragment extends Fragment {
-
+    private ProgressDialog progressDialog;
     private RecyclerView recyclerView;
     private TextView textViewFechaHoraReserva;
     private TextView textViewNombreUsuario;
@@ -70,7 +71,9 @@ public class CarritoDeReservaFragment extends Fragment {
         btnFinalizarReserva.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 finalizarReservaTemporal();
+                mostrarDialogoPreparandoReserva();
             }
         });
 
@@ -78,20 +81,38 @@ public class CarritoDeReservaFragment extends Fragment {
 
         return view;
     }
+    private void mostrarDialogoPreparandoReserva() {
+        // Crea un ProgressDialog
+        progressDialog = new ProgressDialog(getContext());
+        progressDialog.setMessage("Preparando reserva...");
+        progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        progressDialog.setCanceledOnTouchOutside(false);
+        progressDialog.show();
+    }
 
+    private void ocultarDialogoPreparandoReserva() {
+        if (progressDialog != null && progressDialog.isShowing()) {
+            progressDialog.dismiss();
+        }
+    }
     private void finalizarReservaTemporal() {
         presenter.finalizarReservaTemporal(new CarritoReservaUsuarioPresenter.OnReservaFinalizadaListener() {
             @Override
             public void onReservaFinalizada() {
                 // La reserva se ha finalizado correctamente, puedes realizar acciones adicionales si es necesario
                 Toast.makeText(getContext(), "Reserva finalizada correctamente", Toast.LENGTH_SHORT).show();
+                // Oculta el ProgressDialog
+                ocultarDialogoPreparandoReserva();
                 // Redirige a ReservaQrFragment
+
                 mostrarReservaQrFragment();
             }
 
             @Override
             public void onError(String mensajeError) {
                 // Manejar errores si es necesario, por ejemplo, mostrar un mensaje de error
+                //ocultarDialogoPreparandoReserva();
+                ocultarDialogoPreparandoReserva();
             }
         });
     }

@@ -68,8 +68,8 @@ public class ReservaQrFragment extends Fragment {
                     .into(qrCodeImageView);
 
             // Mostrar el código de reserva y el nombre del usuario
-            codigoReservaTextView.setText("Código de Reserva: " + reservaCodigo);
-            nombreUsuarioTextView.setText("Nombre de Usuario: " + nombreUsuario);
+            codigoReservaTextView.setText(reservaCodigo);
+            nombreUsuarioTextView.setText(nombreUsuario);
         } else {
             // Manejar el caso de URL nula o vacía
             Toast.makeText(requireContext(), "URL del código QR no válida", Toast.LENGTH_SHORT).show();

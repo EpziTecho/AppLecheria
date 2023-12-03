@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,25 +8,29 @@
     android:background="@color/white"
     android:fillViewport="true">
 
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="16dp">
+
+
+    <!-- LinearLayout para la barra de búsqueda y el botón de agregar productos -->
+
+    <!-- RecyclerView con CardView para el listado de productos -->
 
     <TextView
 
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="16dp"
         android:fontFamily="@font/poppins_semibold"
         android:text="Gestion de productos"
         android:textColor="#000000"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <!-- LinearLayout para la barra de búsqueda y el botón de agregar productos -->
-
-    <!-- RecyclerView con CardView para el listado de productos -->
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:id="@+id/search_layout"
@@ -34,7 +38,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:orientation="horizontal"
-        android:padding="16dp"
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.529"
         app:layout_constraintStart_toStartOf="parent"
@@ -74,13 +78,13 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/product_list"
         android:layout_width="wrap_content"
-        android:layout_height="515dp"
-
+        android:layout_height="480dp"
+        android:foregroundGravity="center"
 
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view"
         app:layout_constraintVertical_bias="0.0" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+ </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

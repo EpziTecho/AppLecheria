@@ -25,6 +25,7 @@ public class ReservasUsuariosFragment extends Fragment implements GestionReserva
     private PresentadorGestionReservas presentadorGestionReservas;
     private String keyUsuario;
     private String rolUsuario;
+    private View rootView; // Variable para almacenar la vista principal del fragmento
 
     public ReservasUsuariosFragment() {
         // Required empty public constructor
@@ -42,34 +43,42 @@ public class ReservasUsuariosFragment extends Fragment implements GestionReserva
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_reservas_usuarios_view, container, false);
+        rootView = inflater.inflate(R.layout.fragment_reservas_usuarios_view, container, false);
 
-        recyclerView = view.findViewById(R.id.recyclerViewReservas);
+        recyclerView = rootView.findViewById(R.id.recyclerViewReservas);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         reservasAdapter = new ReservasAdapter();
         recyclerView.setAdapter(reservasAdapter);
-
-
 
         // Configurar el manejador de clics en el adaptador
         reservasAdapter.setOnItemClickListener(this);
 
         presentadorGestionReservas = new PresentadorGestionReservas(this);
-        presentadorGestionReservas.obtenerReservasDesdeFirebase(); // Call to get reservations
+        presentadorGestionReservas.obtenerReservasDesdeFirebase(); // Llamar para obtener reservas
         presentadorGestionReservas.obtenerKeyUsuario();
         presentadorGestionReservas.obtenerRolUsuario();
 
-        return view;
+        return rootView;
     }
 
     @Override
     public void mostrarMensaje(String mensaje) {
-        // Implement how you want to display the message in your fragment
+        // Implementa cómo quieres mostrar el mensaje en tu fragmento
     }
 
     @Override
     public void mostrarReservas(List<ReservaModel> reservas) {
-        reservasAdapter.actualizarReservas(reservas);
+        if (reservas.isEmpty()) {
+            // No hay reservas, cargar el diseño vacío
+            recyclerView.setVisibility(View.GONE);
+            rootView.findViewById(R.id.layout_reservas_vacias).setVisibility(View.VISIBLE);
+        } else {
+            // Hay reservas, cargar el RecyclerView
+            recyclerView.setVisibility(View.VISIBLE);
+            rootView.findViewById(R.id.layout_reservas_vacias).setVisibility(View.GONE);
+
+            reservasAdapter.actualizarReservas(reservas);
+        }
     }
 
     @Override

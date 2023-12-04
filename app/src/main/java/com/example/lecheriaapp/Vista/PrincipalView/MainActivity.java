@@ -287,19 +287,35 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return true;
     }
 
-    @Override
+        @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.carritoDeReserva) {
-            // Verifica el estado de la reserva antes de decidir qué fragmento cargar
+            // Verificar si el usuario ha iniciado sesión
+            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+            if (user == null) {
+                // El usuario no ha iniciado sesión, redirigir al fragmento de inicio de sesión
+                mostrarMensaje("Para hacer reservas, necesitas iniciar sesión");
+
+                // Reemplazar con el código que inicia el LoginFragment
+                FragmentManager fragmentManager = getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.fragment_container, new LoginFragment());
+                fragmentTransaction.addToBackStack(null);  // Opcional: agregar a la pila de retroceso
+                fragmentTransaction.commit();
+
+                return true;
+            }
+
+            // El usuario ha iniciado sesión, verificar el estado de la reserva
             presenterPrincipal.obtenerEstadoReservaTemporal(new CarritoReservaUsuarioPresenter.OnEstadoReservaObtenidoListener() {
                 @Override
                 public void onEstadoReservaObtenido(String estado) {
                     if ("RESERVA TEMPORAL".equals(estado)) {
-                        // El estado es RESERVA TEMPORAL, reemplaza con el fragmento de carrito de reserva
+                        // El estado es RESERVA TEMPORAL, reemplazar con el fragmento de carrito de reserva
                         replaceFragment(new CarritoDeReservaFragment());
                     } else {
-                        // El estado no es RESERVA TEMPORAL, reemplaza con el fragmento vacío
+                        // El estado no es RESERVA TEMPORAL, reemplazar con el fragmento vacío
                         replaceFragment(new CarritoDeReservaVacioFragment());
                     }
                 }
@@ -316,6 +332,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    // Método para mostrar mensajes
+    private void mostrarMensaje(String mensaje) {
+        Toast.makeText(this, mensaje, Toast.LENGTH_SHORT).show();
     }
 
     private void ObtenerUsuarioRol() {

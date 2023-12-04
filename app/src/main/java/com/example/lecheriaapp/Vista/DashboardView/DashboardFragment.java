@@ -37,12 +37,13 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
+import java.util.TreeMap;
 
 public class DashboardFragment extends Fragment {
 
     BarChart barChart;
     PieChart pieChart;
-
+    private ArrayList<String> labels;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -76,21 +77,50 @@ public class DashboardFragment extends Fragment {
         }
 
         // Crear las entradas para el gráfico de barras y de pie
+             ArrayList<PieEntry> pieEntries = new ArrayList<>();
+        // Crear entradas y etiquetas para el BarChart
         ArrayList<BarEntry> barEntries = new ArrayList<>();
-        ArrayList<PieEntry> pieEntries = new ArrayList<>();
+        ArrayList<String> labels = new ArrayList<>(); // Lista para almacenar los nombres de los meses
+        Map<String, BarDataItem> dataPorMes = new TreeMap<>(); // Usar TreeMap para ordenar por clave
 
+// Iterar sobre las reservas y calcular ventas y cantidad de reservas por mes
+        for (Map<String, Object> reservaData : reservations.values()) {
+            String fechaString = (String) reservaData.get("fecha");
+            float totalReserva = Float.parseFloat(reservaData.get("total").toString());
+
+            try {
+                Date fecha = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss", Locale.getDefault()).parse(fechaString);
+                String mes = new SimpleDateFormat("MMMM", Locale.getDefault()).format(fecha);
+
+                // Obtener o crear el objeto BarDataItem para el mes
+                BarDataItem barDataItem = dataPorMes.get(mes);
+                if (barDataItem == null) {
+                    barDataItem = new BarDataItem();
+                    dataPorMes.put(mes, barDataItem);
+                }
+
+                // Incrementar la cantidad de reservas y sumar el total de la reserva
+                barDataItem.cantidadReservas++;
+                barDataItem.totalVentas += totalReserva;
+
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+        }
+
+// Crear entradas y etiquetas ordenadas para el BarChart
         int i = 0;
-        for (Map.Entry<String, Integer> entry : reservationsPorMes.entrySet()) {
-            float value = entry.getValue().floatValue();
-            barEntries.add(new BarEntry(i, value));
-            pieEntries.add(new PieEntry(value, entry.getKey()));
+        for (Map.Entry<String, BarDataItem> entry : dataPorMes.entrySet()) {
+            BarDataItem barDataItem = entry.getValue();
+            barEntries.add(new BarEntry(i, barDataItem.totalVentas, barDataItem));
+            labels.add(entry.getKey()); // Agregar el nombre del mes
             i++;
         }
 
         BarDataSet barDataSet = new BarDataSet(barEntries, "Ventas y Reservas por mes");
         barDataSet.setColors(ColorTemplate.COLORFUL_COLORS);
         barDataSet.setValueTextSize(14f); // Tamaño del texto de los valores en las barras
-        barDataSet.setValueFormatter(new CustomBarValueFormatter()); // Formateador para mostrar ambas etiquetas
+        barDataSet.setValueFormatter(new CustomBarValueFormatter(labels)); // Formateador para mostrar ambas etiquetas
 
         BarData barData = new BarData(barDataSet);
         barChart.setData(barData);
@@ -265,7 +295,8 @@ public class DashboardFragment extends Fragment {
             barChart.clear();
 
             ArrayList<BarEntry> barEntries = new ArrayList<>();
-            Map<String, BarDataItem> dataPorMes = new HashMap<>();
+            ArrayList<String> labels = new ArrayList<>(); // Lista para almacenar los nombres de los meses
+            Map<String, BarDataItem> dataPorMes = new TreeMap<>(); // Usar TreeMap para ordenar por clave
 
             // Iterar sobre las reservas y calcular ventas y cantidad de reservas por mes
             for (Map<String, Object> reservaData : reservations.values()) {
@@ -292,18 +323,19 @@ public class DashboardFragment extends Fragment {
                 }
             }
 
-            // Crear entradas para el BarChart
+            // Crear entradas y etiquetas ordenadas para el BarChart
             int i = 0;
             for (Map.Entry<String, BarDataItem> entry : dataPorMes.entrySet()) {
                 BarDataItem barDataItem = entry.getValue();
-                barEntries.add(new BarEntry(i, barDataItem.totalVentas, barDataItem)); // Usamos el objeto como etiqueta
+                barEntries.add(new BarEntry(i, barDataItem.totalVentas, barDataItem));
+                labels.add(entry.getKey()); // Agregar el nombre del mes
                 i++;
             }
 
             BarDataSet barDataSet = new BarDataSet(barEntries, "Ventas y Reservas por mes");
             barDataSet.setColors(ColorTemplate.COLORFUL_COLORS);
             barDataSet.setValueTextSize(12f); // Tamaño del texto de los valores en las barras
-            barDataSet.setValueFormatter(new CustomBarValueFormatter()); // Formateador para mostrar ambas etiquetas
+            barDataSet.setValueFormatter(new CustomBarValueFormatter(labels)); // Pasar las etiquetas al formateador
 
             BarData barData = new BarData(barDataSet);
             barChart.setData(barData);
@@ -314,9 +346,20 @@ public class DashboardFragment extends Fragment {
             //ocultar descripcion
             barChart.getDescription().setEnabled(false);
             // Configurar la leyenda
+            ArrayList<LegendEntry> legendEntries = new ArrayList<>();
             Legend legend = barChart.getLegend();
             legend.setTextSize(14f); // Tamaño del texto de la leyenda
             legend.setFormSize(14f); // Tamaño del texto en la leyenda
+
+// Agregar nombres de los meses a la leyenda
+            for (int j = 0; j < labels.size(); j++) {
+                LegendEntry entry = new LegendEntry();
+                entry.formColor = ColorTemplate.COLORFUL_COLORS[j % ColorTemplate.COLORFUL_COLORS.length];
+                entry.label = labels.get(j);
+                legendEntries.add(entry);
+            }
+
+            legend.setCustom(legendEntries);
 
             // Configurar el eje X (parte inferior del gráfico)
             XAxis xAxis = barChart.getXAxis();
@@ -344,14 +387,26 @@ public class DashboardFragment extends Fragment {
 
     // Formateador personalizado para mostrar ambas etiquetas en las barras
     private static class CustomBarValueFormatter extends ValueFormatter {
+        private final ArrayList<String> labels;
+
+        public CustomBarValueFormatter(ArrayList<String> labels) {
+            this.labels = labels;
+        }
+
         @Override
         public String getBarLabel(BarEntry barEntry) {
             // Obtener el objeto BarDataItem almacenado como etiqueta en la barra
             BarDataItem barDataItem = (BarDataItem) barEntry.getData();
 
-            // Formatear la etiqueta con la cantidad de reservas y el total de ventas
-            return "Reservas: " + barDataItem.cantidadReservas + ", Ventas: $" + barDataItem.totalVentas;
+            // Obtener el índice de la entrada en el conjunto de datos
+            //int index = (int) barEntry.getX();
+
+            // Obtener el nombre del mes correspondiente al índice
+           // String mes = labels.get(index);
+
+            // Formatear la etiqueta con el nombre del mes, cantidad de reservas y el total de ventas
+           // return "\nReservas: " + barDataItem.cantidadReservas + ", Ventas: $" + barDataItem.totalVentas;
+            return "\nReservas: " + barDataItem.cantidadReservas ;
         }
     }
-
 }

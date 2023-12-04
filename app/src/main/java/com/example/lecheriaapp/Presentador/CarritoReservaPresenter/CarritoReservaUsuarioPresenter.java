@@ -395,7 +395,36 @@ public class CarritoReservaUsuarioPresenter {
             });
         }
     }
+    public void cancelarReservaTemporal(final OnReservaCanceladaListener listener) {
+        obtenerIdReservaTemporal(new OnIdReservaTemporalObtenidoListener() {
+            @Override
+            public void onIdReservaTemporalObtenido(String idReservaTemporal) {
+                if (idReservaTemporal != null) {
+                    // Elimina la reserva temporal de la base de datos
+                    DatabaseReference reservaRef = mDatabase.child("reservas").child(idReservaTemporal);
+                    reservaRef.removeValue((error, ref) -> {
+                        if (error == null) {
+                            listener.onReservaCancelada();
+                            Log.d("CarritoReservaPresenter", "Reserva cancelada con éxito");
+                        } else {
+                            listener.onError(error.getMessage());
+                        }
+                    });
+                } else {
+                    listener.onError("No se encontró una reserva temporal");
+                }
+            }
 
+            @Override
+            public void onError(String mensajeError) {
+                listener.onError(mensajeError);
+            }
+        });
+    }
+    public interface OnReservaCanceladaListener {
+        void onReservaCancelada();
+        void onError(String mensajeError);
+    }
     public interface OnProductosObtenidosListener {
         void onProductosObtenidos(List<ProductoModel> productos);
         void onError(String mensajeError);

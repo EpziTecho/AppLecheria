@@ -30,6 +30,7 @@ public class CarritoDeReservaFragment extends Fragment {
     private TextView textViewSubtotal;
     private TextView textViewTotal;
     private Button btnFinalizarReserva;
+    private Button btnCancelarReserva;
 
     private TextView textViewIdReserva;
     private ProductosReservadosAdapter productosAdapter;
@@ -66,7 +67,7 @@ public class CarritoDeReservaFragment extends Fragment {
         textViewSubtotal = view.findViewById(R.id.textViewSubtotal);
         textViewTotal = view.findViewById(R.id.textViewTotal);
         btnFinalizarReserva = view.findViewById(R.id.btnFinalizarReserva);
-
+        btnCancelarReserva = view.findViewById(R.id.btnCancelarReserva);
         // Establece un OnClickListener para el botón "Finalizar Reserva"
         btnFinalizarReserva.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,10 +77,33 @@ public class CarritoDeReservaFragment extends Fragment {
                 mostrarDialogoPreparandoReserva();
             }
         });
-
+        // Configura el OnClickListener para el botón "Cancelar Reserva"
+        btnCancelarReserva.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                cancelarReservaTemporal();
+            }
+        });
         obtenerEstadoReservaTemporal();
 
         return view;
+    }
+    private void cancelarReservaTemporal() {
+        presenter.cancelarReservaTemporal(new CarritoReservaUsuarioPresenter.OnReservaCanceladaListener() {
+            @Override
+            public void onReservaCancelada() {
+                // La reserva se ha cancelado correctamente
+                Toast.makeText(getContext(), "Reserva cancelada correctamente", Toast.LENGTH_SHORT).show();
+                // Redirige a HomeFragment u otra ubicación deseada
+                getFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomeFragment()).commit();
+            }
+
+            @Override
+            public void onError(String mensajeError) {
+                // Manejar errores si es necesario
+                Toast.makeText(getContext(), "Error al cancelar la reserva: " + mensajeError, Toast.LENGTH_SHORT).show();
+            }
+        });
     }
     private void mostrarDialogoPreparandoReserva() {
         // Crea un ProgressDialog

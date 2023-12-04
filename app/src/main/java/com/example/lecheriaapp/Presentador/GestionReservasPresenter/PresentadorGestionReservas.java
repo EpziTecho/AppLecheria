@@ -1,7 +1,12 @@
 package com.example.lecheriaapp.Presentador.GestionReservasPresenter;
 
+import androidx.annotation.NonNull;
+
 import com.example.lecheriaapp.Modelo.ProductoModel;
 import com.example.lecheriaapp.Modelo.ReservaModel;
+import com.example.lecheriaapp.Modelo.UserModel;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -95,10 +100,49 @@ public class PresentadorGestionReservas {
         });
     }
 
+    // Método para obtener el key identificador del usuario
+    public void obtenerKeyUsuario() {
+        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+        if (currentUser != null) {
+            String uid = currentUser.getUid();
+            view.mostrarKeyUsuario(uid);
+        }
+    }
+
+    // Método para obtener el rol del usuario
+    public void obtenerRolUsuario() {
+        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+        if (currentUser != null) {
+            String uid = currentUser.getUid();
+            DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("Usuarios").child(uid);
+            userRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    UserModel userModel = dataSnapshot.getValue(UserModel.class);
+                    if (userModel != null) {
+                        String userRol = userModel.getRol();
+                        view.mostrarRolUsuario(userRol);
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+                    // Manejar el error, si es necesario
+                }
+            });
+        }
+    }
+
     public interface GestionReservasView {
         void mostrarMensaje(String mensaje);
 
         void mostrarReservas(List<ReservaModel> reservas);
+
+        // Nuevo método para mostrar el key identificador del usuario
+        void mostrarKeyUsuario(String keyUsuario);
+
+        // Nuevo método para mostrar el rol del usuario
+        void mostrarRolUsuario(String rolUsuario);
         // Otros métodos de la interfaz para la interacción con la vista
     }
 }

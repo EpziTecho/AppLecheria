@@ -1,6 +1,7 @@
 package com.example.lecheriaapp.Vista.ReservasUsuariosView;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +23,8 @@ public class ReservasUsuariosFragment extends Fragment implements GestionReserva
     private RecyclerView recyclerView;
     private ReservasAdapter reservasAdapter;
     private PresentadorGestionReservas presentadorGestionReservas;
+    private String keyUsuario;
+    private String rolUsuario;
 
     public ReservasUsuariosFragment() {
         // Required empty public constructor
@@ -46,11 +49,15 @@ public class ReservasUsuariosFragment extends Fragment implements GestionReserva
         reservasAdapter = new ReservasAdapter();
         recyclerView.setAdapter(reservasAdapter);
 
+
+
         // Configurar el manejador de clics en el adaptador
         reservasAdapter.setOnItemClickListener(this);
 
         presentadorGestionReservas = new PresentadorGestionReservas(this);
         presentadorGestionReservas.obtenerReservasDesdeFirebase(); // Call to get reservations
+        presentadorGestionReservas.obtenerKeyUsuario();
+        presentadorGestionReservas.obtenerRolUsuario();
 
         return view;
     }
@@ -63,6 +70,18 @@ public class ReservasUsuariosFragment extends Fragment implements GestionReserva
     @Override
     public void mostrarReservas(List<ReservaModel> reservas) {
         reservasAdapter.actualizarReservas(reservas);
+    }
+
+    @Override
+    public void mostrarKeyUsuario(String keyUsuario) {
+        this.keyUsuario = keyUsuario;
+        Log.d("ReservasUsuariosFragment", "Valor de keyUsuario: " + keyUsuario);
+    }
+
+    @Override
+    public void mostrarRolUsuario(String rolUsuario) {
+        this.rolUsuario = rolUsuario;
+        Log.d("ReservasUsuariosFragment", "Valor de rolUsuario: " + rolUsuario);
     }
 
     // Método implementado desde OnItemClickListener

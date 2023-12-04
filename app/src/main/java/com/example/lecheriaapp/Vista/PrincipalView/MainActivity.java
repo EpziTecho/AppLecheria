@@ -26,6 +26,7 @@ import com.example.lecheriaapp.Presentador.CarritoReservaPresenter.CarritoReserv
 import com.example.lecheriaapp.Vista.CarritoDeReservasView.CarritoDeReservaFragment;
 import com.example.lecheriaapp.Vista.CarritoDeReservasView.CarritoDeReservaVacioFragment;
 import com.example.lecheriaapp.Vista.DashboardView.DashboardFragment;
+import com.example.lecheriaapp.Vista.FaqAdminView.FaqAdminFragment;
 import com.example.lecheriaapp.Vista.FaqView.FaqFragment;
 import com.example.lecheriaapp.Vista.FavoritosUsuarioView.FavoritosUsuarioFragment;
 import com.example.lecheriaapp.Vista.HomeView.HomeFragment;
@@ -110,12 +111,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         MenuItem gestionProductosItemOculto2 = navMenu.findItem(R.id.nav_promosperfil);
         MenuItem reservasItemOculto3= navMenu.findItem(R.id.nav_reservas);
         MenuItem dashboardItemOculto4= navMenu.findItem(R.id.nav_dashboard);
+        MenuItem faqAdminItem = navMenu.findItem(R.id.nav_admin_faq);
+        MenuItem faqItem = navMenu.findItem(R.id.nav_faq);
         mAuth = FirebaseAuth.getInstance();
 
         if (mAuth.getCurrentUser() != null) {
             loginItem.setVisible(false);
             logoutItem.setVisible(true);
             reservasItemOculto3.setVisible(true);
+            faqItem.setVisible(true);
 
             String currentUserId = mAuth.getCurrentUser().getUid();
             mDatabase.child("Usuarios").child(currentUserId).child("rol").get().addOnCompleteListener(task -> {
@@ -127,16 +131,22 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                             gestionProductosItemOculto1.setVisible(true);
                             gestionProductosItemOculto2.setVisible(true);
                             dashboardItemOculto4.setVisible(true);
+                            faqAdminItem.setVisible(true);
+                            faqItem.setVisible(false);
                         } else if (rol.equals("cliente")) {
                             gestionProductosItem.setVisible(false);
                             gestionProductosItemOculto1.setVisible(true);
                             gestionProductosItemOculto2.setVisible(true);
                             dashboardItemOculto4.setVisible(false);
+                            faqAdminItem.setVisible(false);
+                            faqItem.setVisible(true);
                         } else {
                             gestionProductosItem.setVisible(false);
                             gestionProductosItemOculto1.setVisible(false);
                             gestionProductosItemOculto2.setVisible(false);
                             dashboardItemOculto4.setVisible(false);
+                            faqAdminItem.setVisible(false);
+                            faqItem.setVisible(true);
                         }
                     }
                 } else {
@@ -151,6 +161,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             gestionProductosItemOculto1.setVisible(false);
             gestionProductosItemOculto2.setVisible(false);
             dashboardItemOculto4.setVisible(false);
+            faqItem.setVisible(true);
+            faqAdminItem.setVisible(false);
         }
 
         // Hacer que al iniciar sesión, del usuario logeado se muestre el nombre del usuario y el correo en el header
@@ -238,6 +250,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
             case R.id.nav_faq:
                 replaceFragment(new FaqFragment());
+                break;
+            case R.id.nav_admin_faq:
+                replaceFragment(new FaqAdminFragment());
                 break;
             case R.id.nav_logout:
                 // Cerrar la sesión actual y redirigir a la actividad de inicio de sesión con un mensaje de despedida,

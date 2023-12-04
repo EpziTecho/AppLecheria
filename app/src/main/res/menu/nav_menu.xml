@@ -30,6 +30,10 @@
             android:icon="@drawable/baseline_question_answer_24"
             android:title="Faq/Preguntas Frecuentes" />
         <item
+            android:id="@+id/nav_admin_faq"
+            android:icon="@drawable/baseline_question_answer_24"
+            android:title="Faq/Preguntas Frecuentes" />
+        <item
             android:id="@+id/nav_reservas"
             android:icon="@drawable/baseline_calendar_month_24"
             android:title="Reservas" />

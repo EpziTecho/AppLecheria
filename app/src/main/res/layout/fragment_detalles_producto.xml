@@ -3,12 +3,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginBottom="70dp"
+    android:layout_marginBottom="40dp"
     android:fillViewport="true">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:fillViewport="true"
         >
 
         <com.google.android.material.imageview.ShapeableImageView
@@ -138,6 +139,8 @@
             android:layout_marginTop="12dp"
             android:gravity="center"
             android:orientation="vertical"
+            android:background="@drawable/producto_background"
+            android:elevation="4dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.496"
             app:layout_constraintStart_toStartOf="parent"
@@ -171,9 +174,11 @@
             android:id="@+id/linearLayoutCompat"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="24dp"
+            android:background="@drawable/boton_fondo"
             android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout4">
 
@@ -190,8 +195,9 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:inputType="number"
+                android:layout_marginHorizontal="5dp"
                 android:hint="Cantidad"
+                android:inputType="number"
                 tools:layout_editor_absoluteX="224dp"
                 tools:layout_editor_absoluteY="587dp" />
         </androidx.appcompat.widget.LinearLayoutCompat>
@@ -200,13 +206,16 @@
             android:id="@+id/btn_reservas"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginVertical="30dp"
             android:layout_marginTop="20dp"
+
             android:text="Reservar Producto"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayoutCompat" />
+            app:layout_constraintTop_toBottomOf="@+id/linearLayoutCompat"
+            app:layout_constraintVertical_bias="0.084" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

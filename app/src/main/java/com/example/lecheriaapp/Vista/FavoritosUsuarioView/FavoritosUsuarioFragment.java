@@ -27,7 +27,7 @@ public class FavoritosUsuarioFragment extends Fragment implements RecyclerProduc
     private RecyclerView mRecyclerView;
     private RecyclerProductoAdapter mAdapter;
     private DatabaseReference mDatabase;
-
+    private View rootView;
     public FavoritosUsuarioFragment() {
         // Required empty public constructor
     }
@@ -42,14 +42,14 @@ public class FavoritosUsuarioFragment extends Fragment implements RecyclerProduc
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_favoritosusuario, container, false);
+        rootView = inflater.inflate(R.layout.fragment_favoritosusuario, container, false);
 
-        mRecyclerView = view.findViewById(R.id.recycler_favoritos);
+        mRecyclerView = rootView.findViewById(R.id.recycler_favoritos);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
         cargarFavoritos();
 
-        return view;
+        return rootView;
     }
 
     private void cargarFavoritos() {
@@ -68,9 +68,19 @@ public class FavoritosUsuarioFragment extends Fragment implements RecyclerProduc
                         favoritosList.add(producto);
                     }
 
-                    mAdapter = new RecyclerProductoAdapter(getContext(), R.layout.item_favorito, new ArrayList<>(favoritosList));
-                    mAdapter.setFavoritosUpdateListener(this); // Establecer el listener
-                    mRecyclerView.setAdapter(mAdapter);
+                    if (favoritosList.isEmpty()) {
+                        // No hay productos favoritos, cargar el diseño vacío
+                        mRecyclerView.setVisibility(View.GONE);
+                        rootView.findViewById(R.id.layout_favoritos_vacio).setVisibility(View.VISIBLE);
+                    } else {
+                        // Hay productos favoritos, cargar el RecyclerView
+                        mRecyclerView.setVisibility(View.VISIBLE);
+                        rootView.findViewById(R.id.layout_favoritos_vacio).setVisibility(View.GONE);
+
+                        mAdapter = new RecyclerProductoAdapter(getContext(), R.layout.item_favorito, new ArrayList<>(favoritosList));
+                        mAdapter.setFavoritosUpdateListener(this); // Establecer el listener
+                        mRecyclerView.setAdapter(mAdapter);
+                    }
                 }
             });
         }

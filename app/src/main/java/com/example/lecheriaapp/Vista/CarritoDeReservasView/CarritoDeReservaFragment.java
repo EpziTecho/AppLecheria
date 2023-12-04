@@ -189,7 +189,7 @@ public class CarritoDeReservaFragment extends Fragment {
             @Override
             public void onIdReservaTemporalObtenido(String idReservaTemporal) {
                 if (idReservaTemporal != null) {
-                    textViewIdReserva.setText("ID de la Reserva: " + idReservaTemporal);
+                    textViewIdReserva.setText("N° de Reserva: " + idReservaTemporal);
                 }
             }
 
@@ -204,7 +204,7 @@ public class CarritoDeReservaFragment extends Fragment {
         presenter.obtenerNombreUsuario(new CarritoReservaUsuarioPresenter.OnNombreUsuarioObtenidoListener() {
             @Override
             public void onNombreUsuarioObtenido(String nombreUsuario) {
-                textViewNombreUsuario.setText("Nombre de usuario: " + nombreUsuario);
+                textViewNombreUsuario.setText("Cliente: " + nombreUsuario);
             }
 
             @Override
@@ -218,12 +218,12 @@ public class CarritoDeReservaFragment extends Fragment {
         presenter.obtenerFechaReservaTemporal(new CarritoReservaUsuarioPresenter.OnFechaReservaObtenidoListener() {
             @Override
             public void onFechaReservaObtenido(String fechaReserva) {
-                textViewFechaHoraReserva.setText("Fecha y Hora de la Reserva: " + fechaReserva);
+                textViewFechaHoraReserva.setText("Fecha de Reserva: " + fechaReserva);
             }
 
             @Override
             public void onError(String mensajeError) {
-                textViewFechaHoraReserva.setText("Fecha y Hora de la Reserva: No encontrada");
+                textViewFechaHoraReserva.setText("Fecha de Reserva: No encontrada");
             }
         });
     }
@@ -232,8 +232,8 @@ public class CarritoDeReservaFragment extends Fragment {
         presenter.obtenerSubtotalYTotal(new CarritoReservaUsuarioPresenter.OnSubtotalYTotalObtenidosListener() {
             @Override
             public void onSubtotalYTotalObtenidos(double subtotal, double total) {
-                textViewSubtotal.setText("Subtotal: " + subtotal);
-                textViewTotal.setText("Total: " + total);
+                textViewSubtotal.setText(""+subtotal);
+                textViewTotal.setText("" + total);
             }
 
             @Override

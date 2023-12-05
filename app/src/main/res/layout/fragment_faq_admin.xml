@@ -1,14 +1,187 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Vista.FaqAdminView.FaqAdminFragment">
-
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    tools:context=".Vista.FaqView.FaqFragment"
+    android:fillViewport="true"
+    android:layout_marginBottom="70dp">
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:fillViewport="true"
+        >
 
-</FrameLayout>
+
+        <!-- TODO: Update blank fragment layout -->
+        <TextView
+            android:id="@+id/textView7"
+            android:layout_width="54dp"
+            android:layout_height="36dp"
+            android:text="FAQ"
+            android:textColor="@android:color/black"
+            android:textSize="23sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:layout_editor_absoluteY="16dp" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="334dp"
+            android:layout_height="41dp"
+            android:layout_marginHorizontal="5dp"
+            android:layout_marginTop="4dp"
+            android:text="En la lecheria APP contamos con diferentes funciones, a continuacion encuentra el de tu interes."
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.493"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView7" />
+        <TextView
+            android:id="@+id/textView19"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="¿Gestionar producto?"
+            android:textColor="@android:color/black"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.094"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+        <TextView
+            android:id="@+id/textView24"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="◐ Agregar producto"
+            android:textColor="@android:color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.118"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView19" />
+        <TextView
+            android:id="@+id/textView27"
+            android:layout_width="331dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Para agregar producto debes darle click en las tres rayas y luego darle click en gestionar producto, este te llevara a una nueva vista donde se visualizara todos los produtos, luego deberas darle click en el boton agregar y llenar todos los campos solicitados. Finalmente deberas darle click en agregar y asi este producto aparecera a los clientes y en tu lista de productos. "
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView24" />
+
+        <ImageView
+            android:id="@+id/imageView13"
+            android:layout_width="301dp"
+            android:layout_height="232dp"
+            android:src="@drawable/agregarprod"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView27" />
+
+        <TextView
+            android:id="@+id/textView38"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="◐ Editar producto"
+            android:textColor="@android:color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.112"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView13" />
+
+        <TextView
+            android:id="@+id/textView41"
+            android:layout_width="331dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Para editar producto debes darle click en las tres rayas y luego darle click en gestionar producto, este te llevara a una nueva vista donde se visualizara todos los produtos, luego deberas darle click en el boton con el icono de lapiz y editar los campos que requieras. Finalmente deberas darle click en guardar y asi este producto actualizara sus datos para los clientes y en tu lista de productos. "
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.512"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView38" />
+
+        <ImageView
+            android:id="@+id/imageView14"
+            android:layout_width="327dp"
+            android:layout_height="220dp"
+            android:src="@drawable/editarprod"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView41" />
+
+        <TextView
+            android:id="@+id/textView42"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="◐ Eliminar producto"
+            android:textColor="@android:color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.118"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView14" />
+
+        <TextView
+            android:id="@+id/textView43"
+            android:layout_width="331dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="Para Eliminar producto debes darle click en las tres rayas y luego darle click en gestionar producto, este te llevara a una nueva vista donde se visualizara todos los produtos, luego deberas darle click en el boton eliminar que esta con el icono de tacho de basura y asi este producto desaparecera a los clientes y en de tu lista de productos. "
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView42" />
+
+        <ImageView
+            android:id="@+id/imageView15"
+            android:layout_width="271dp"
+            android:layout_height="271dp"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/eliminarprod"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView43" />
+
+        <TextView
+            android:id="@+id/textView44"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="¿Dashboard?"
+            android:textColor="@android:color/black"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.077"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView15" />
+
+        <TextView
+            android:id="@+id/textView46"
+            android:layout_width="331dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="Para acceder a los graficos de dashboard, deberias darle click en las tres rayas, luego click en dashboard, de esta manera podrias visualizar los graficos que te ayudaran a tomar futuras decisiones."
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.525"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView44" />
+
+        <ImageView
+            android:id="@+id/imageView16"
+            android:layout_width="321dp"
+            android:layout_height="294dp"
+            android:layout_marginTop="12dp"
+            android:src="@drawable/dashborad"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView46" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

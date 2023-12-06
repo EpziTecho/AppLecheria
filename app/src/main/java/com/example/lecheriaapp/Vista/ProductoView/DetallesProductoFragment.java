@@ -21,6 +21,8 @@ import com.bumptech.glide.Glide;
 import com.example.lecheriaapp.Presentador.ReservasProductosUsuarioPresenter.ReservarProductosUsuario;
 import com.example.lecheriaapp.R;
 import com.example.lecheriaapp.Modelo.ProductoModel;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,6 +47,14 @@ public class DetallesProductoFragment extends Fragment {
         ImageView imagenImageView = rootView.findViewById(R.id.producto_imagen);
         TextView categoriaTextView = rootView.findViewById(R.id.producto_categoria);
         Button botonFavorito = rootView.findViewById(R.id.btn_favorito);
+
+        Spinner localSpinner = rootView.findViewById(R.id.spinner_local);
+        EditText cantidadEditText = rootView.findViewById(R.id.editText_cantidad);
+        Button ReservasButton = rootView.findViewById(R.id.btn_reservas);
+
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+
 
         Bundle args = requireArguments();
         if (args != null) {
@@ -84,10 +94,12 @@ public class DetallesProductoFragment extends Fragment {
         }
         reservarProductosUsuario = new ReservarProductosUsuario(requireContext());
 
-
-        Spinner localSpinner = rootView.findViewById(R.id.spinner_local);
-        EditText cantidadEditText = rootView.findViewById(R.id.editText_cantidad);
-
+        // Verificar si hay una sesión iniciada
+        if (user != null) {
+        // El usuario ha iniciado sesión, mostrar los componentes
+            localSpinner.setVisibility(View.VISIBLE);
+            cantidadEditText.setVisibility(View.VISIBLE);
+            ReservasButton.setVisibility(View.VISIBLE);
         // Obtener la disponibilidad del argumento
         String disponibilidad = args.getString("disponibilidad");
 
@@ -116,8 +128,12 @@ public class DetallesProductoFragment extends Fragment {
         localAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         localSpinner.setAdapter(localAdapter);
 
-
-        Button ReservasButton = rootView.findViewById(R.id.btn_reservas);
+        } else {
+            // No hay sesión iniciada, ocultar los componentes
+            localSpinner.setVisibility(View.GONE);
+            cantidadEditText.setVisibility(View.GONE);
+            ReservasButton.setVisibility(View.GONE);
+        }
         ReservasButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

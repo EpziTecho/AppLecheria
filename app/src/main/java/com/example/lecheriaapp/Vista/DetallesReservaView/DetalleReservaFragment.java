@@ -1,6 +1,7 @@
 package com.example.lecheriaapp.Vista.DetallesReservaView;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -55,18 +56,18 @@ public class DetalleReservaFragment extends Fragment {
         // Mostrar los detalles de la reserva en las vistas
         TextView textViewFecha = view.findViewById(R.id.textViewFecha);
         TextView textViewEstado = view.findViewById(R.id.textViewEstado);
-        TextView textViewTotal = view.findViewById(R.id.textViewTotal);
+        TextView textViewTotal = view.findViewById(R.id.textViewTotalDetalleReserva);
         TextView textViewSubtotal = view.findViewById(R.id.textViewSubtotal);
         TextView textViewUsuarioId = view.findViewById(R.id.textViewUsuarioId);
-        //TextView textViewQR = view.findViewById(R.id.textViewQR);
         ImageView imageViewQR = view.findViewById(R.id.imageViewQR);
         textViewFecha.setText(reserva.getFecha());
         textViewEstado.setText(reserva.getEstado());
         textViewTotal.setText("S/. "+ String.valueOf(reserva.getTotal()));
         textViewSubtotal.setText("S/. "+ String.valueOf(reserva.getSubtotal()));
         textViewUsuarioId.setText(" " + String.valueOf(reserva.getUsuarioId()));
-        //textViewQR.setText("QR: " + reserva.getQr());
 
+        Log.d("DetalleReservaFragment", "Subtotal: " + reserva.getSubtotal());
+        Log.d("DetalleReservaFragment", "Total: " + reserva.getTotal());
         Glide.with(this)
                 .load(reserva.getQr())
                 .into(imageViewQR );

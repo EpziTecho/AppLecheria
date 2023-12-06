@@ -12,9 +12,9 @@
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@drawable/logo512x512"
+        android:icon="@drawable/logo2"
         android:label="@string/app_name"
-        android:roundIcon="@drawable/logo512x512"
+        android:roundIcon="@drawable/logo2"
         android:supportsRtl="true"
         android:theme="@style/Theme.LecheriaApp"
         tools:targetApi="31">

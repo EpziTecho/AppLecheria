@@ -24,9 +24,10 @@
         android:id="@+id/btn_favorito"
         android:layout_width="44dp"
         android:layout_height="44dp"
+        android:padding="2dp"
         android:background="#00FFFFFF"
         android:foreground="@drawable/favoritonoseleccionado"
-        android:translationX="60dp"
+        android:translationX="50dp"
         android:translationY="-135dp"
         />
 

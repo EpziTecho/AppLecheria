@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginBottom="70dp"
+    android:paddingBottom="40dp"
     android:orientation="vertical"
     android:fillViewport="true">
 
@@ -213,19 +213,21 @@
                     android:inputType="textPassword" />
             </com.google.android.material.textfield.TextInputLayout>
 
-            <Button
-                android:id="@+id/buttonRegistro"
-                android:layout_width="361dp"
-                android:layout_height="63dp"
-                android:layout_marginTop="16dp"
-                android:background="@drawable/button_rounded"
-                android:text="Registrarse"
-                android:textColor="#FFFFFF"
-                android:textSize="16sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.48"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textInputLayout5" />
+        <Button
+            android:id="@+id/buttonRegistro"
+            android:layout_width="361dp"
+            android:layout_height="63dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/button_rounded"
+            android:text="Registrarse"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            android:layout_marginBottom="40dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.48"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textInputLayout5" />
 
 
 

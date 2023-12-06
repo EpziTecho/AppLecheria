@@ -42,9 +42,7 @@
             android:id="@+id/username_input"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:drawablePadding="10dp"
-            android:inputType="text"
-            android:maxLines="1" />
+            />
 
     </com.google.android.material.textfield.TextInputLayout>
 

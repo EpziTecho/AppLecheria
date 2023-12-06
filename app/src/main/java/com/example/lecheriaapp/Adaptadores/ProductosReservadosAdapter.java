@@ -7,11 +7,16 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
+import androidx.core.view.ViewCompat;
 import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.Glide;
 import com.example.lecheriaapp.Modelo.ProductoModel;
 import com.example.lecheriaapp.R;
+import com.google.android.material.shape.CornerFamily;
+import com.google.android.material.shape.MaterialShapeDrawable;
+import com.google.android.material.shape.ShapeAppearanceModel;
+
 import java.util.List;
 
 public class ProductosReservadosAdapter extends RecyclerView.Adapter<ProductosReservadosAdapter.ProductoViewHolder> {
@@ -35,9 +40,9 @@ public class ProductosReservadosAdapter extends RecyclerView.Adapter<ProductosRe
     public void onBindViewHolder(@NonNull ProductoViewHolder holder, int position) {
         ProductoModel producto = listaProductos.get(position);
 
-        holder.nombreTextView.setText("Nombre: " + producto.getNombre());
-        holder.precioTextView.setText("Precio: $" + producto.getPrecio());
-        holder.cantidadTextView.setText("Cantidad: " + producto.getCantidad());
+        holder.nombreTextView.setText("" + producto.getNombre());
+        holder.precioTextView.setText("S/" + producto.getPrecio());
+        holder.cantidadTextView.setText("" + producto.getCantidad());
         //imagen viene con glide
         Glide.with(context)
                 .load(producto.getImageUrl())
@@ -65,6 +70,14 @@ public class ProductosReservadosAdapter extends RecyclerView.Adapter<ProductosRe
             precioTextView = itemView.findViewById(R.id.textViewPrecio);
             imageView = itemView.findViewById(R.id.imageViewProducto);
             cantidadTextView = itemView.findViewById(R.id.textViewCantidad);
+
+            ShapeAppearanceModel shapeAppearanceModel = new ShapeAppearanceModel()
+                    .toBuilder()
+                    .setAllCorners(CornerFamily.ROUNDED, 60)
+                    .build();
+            MaterialShapeDrawable shapeDrawable = new MaterialShapeDrawable(shapeAppearanceModel);
+            ViewCompat.setBackground(cantidadTextView, shapeDrawable);
+
         }
     }
 

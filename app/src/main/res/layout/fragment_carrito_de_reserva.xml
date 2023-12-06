@@ -34,7 +34,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:padding="4dp"
-            android:text="ID de Reserva: "
+            android:text="N° Reserva: "
             android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView5" />
@@ -75,65 +75,102 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewProductosReservados"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="413dp"
+            android:layout_height="257dp"
+            android:layout_marginBottom="32dp"
+            app:layout_constraintBottom_toTopOf="@+id/textViewSubtotalText"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/view2" />
 
         <TextView
+            android:id="@+id/textViewSubtotalText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:padding="4dp"
+            android:text="Sub-total: "
+            android:textSize="22sp"
+            app:layout_constraintEnd_toStartOf="@+id/textViewSubtotal"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/recyclerViewProductosReservados" />
+
+        <TextView
             android:id="@+id/textViewSubtotal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="17dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginBottom="8dp"
             android:padding="4dp"
-            android:text="Subtotal: "
-            android:textSize="16sp"
+            android:text=""
+            android:textSize="22sp"
+            app:layout_constraintBottom_toTopOf="@+id/textViewTotal"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintTop_toBottomOf="@+id/recyclerViewProductosReservados"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+            android:id="@+id/textViewTotalText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="7dp"
+            android:layout_marginBottom="32dp"
+            android:padding="4dp"
+            android:text="Total: "
+            android:textSize="22sp"
+            app:layout_constraintBottom_toTopOf="@+id/btnFinalizarReserva"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/recyclerViewProductosReservados" />
+            app:layout_constraintTop_toBottomOf="@+id/textViewSubtotalText" />
 
         <TextView
             android:id="@+id/textViewTotal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
+            android:layout_marginStart="100dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginBottom="8dp"
             android:padding="4dp"
-            android:text="Total: "
-            android:textSize="25sp"
+            android:text=""
+            android:textSize="22sp"
+            app:layout_constraintBottom_toTopOf="@+id/btnFinalizarReserva"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.676"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/textViewSubtotal" />
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/textViewTotalText" />
 
         <Button
             android:id="@+id/btnCancelarReserva"
-            android:layout_width="190dp"
-            android:layout_height="47dp"
-            android:layout_marginStart="12dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="8dp"
-            android:background="@color/black"
+            android:layout_width="374dp"
+            android:layout_height="49dp"
+            android:layout_marginStart="18dp"
+            android:layout_marginTop="13dp"
+            android:layout_marginEnd="19dp"
+            android:layout_marginBottom="40dp"
+            android:background="#7c7f82"
             android:text="CANCELAR"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/btnFinalizarReserva"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/textViewTotal"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintTop_toBottomOf="@+id/btnFinalizarReserva"
+            app:layout_constraintVertical_bias="1.0" />
 
         <Button
             android:id="@+id/btnFinalizarReserva"
-            android:layout_width="190dp"
-            android:layout_height="47dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="12dp"
+            android:layout_width="376dp"
+            android:layout_height="45dp"
+            android:layout_marginStart="17dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="18dp"
             android:background="@color/black"
             android:text="Finalizar Reserva"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/textViewTotal"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewTotalText" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

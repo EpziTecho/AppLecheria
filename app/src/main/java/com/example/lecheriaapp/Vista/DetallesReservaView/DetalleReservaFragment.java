@@ -62,8 +62,8 @@ public class DetalleReservaFragment extends Fragment {
         ImageView imageViewQR = view.findViewById(R.id.imageViewQR);
         textViewFecha.setText(reserva.getFecha());
         textViewEstado.setText(reserva.getEstado());
-        textViewTotal.setText(String.valueOf(reserva.getTotal()));
-        textViewSubtotal.setText(String.valueOf(reserva.getSubtotal()));
+        textViewTotal.setText("S/. "+ String.valueOf(reserva.getTotal()));
+        textViewSubtotal.setText("S/. "+ String.valueOf(reserva.getSubtotal()));
         textViewUsuarioId.setText(" " + String.valueOf(reserva.getUsuarioId()));
         //textViewQR.setText("QR: " + reserva.getQr());
 

@@ -64,7 +64,7 @@ public class DetalleReservaFragment extends Fragment {
         textViewEstado.setText(reserva.getEstado());
         textViewTotal.setText(String.valueOf(reserva.getTotal()));
         textViewSubtotal.setText(String.valueOf(reserva.getSubtotal()));
-        textViewUsuarioId.setText("Usuario ID: " + String.valueOf(reserva.getUsuarioId()));
+        textViewUsuarioId.setText(" " + String.valueOf(reserva.getUsuarioId()));
         //textViewQR.setText("QR: " + reserva.getQr());
 
         Glide.with(this)

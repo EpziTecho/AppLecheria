@@ -26,58 +26,107 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/textViewFecha"
+            android:id="@+id/textViewFechaText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="40dp"
             android:text="Fecha: "
             android:textSize="18sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView5" />
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textViewFecha"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="40dp"
+            android:text="Fecha"
+            android:textSize="18sp"
+            app:layout_constraintStart_toEndOf="@+id/textViewFechaText"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/textViewEstado"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            android:layout_marginTop="4dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="5dp"
             android:text="Estado: "
             android:textSize="18sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textViewFecha" />
+            app:layout_constraintTop_toBottomOf="@+id/textViewFechaText" />
+
+
+        <TextView
+            android:id="@+id/textViewSubtotalText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="40dp"
+            android:text="Subtotal: "
+            android:textSize="18sp"
+            app:layout_constraintEnd_toStartOf="@+id/textViewSubtotal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewEstado" />
 
         <TextView
             android:id="@+id/textViewSubtotal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            android:text="Subtotal: "
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="34dp"
+            android:text="Subtotal"
+            android:textSize="18sp"
+            app:layout_constraintStart_toEndOf="@+id/textViewSubtotalText"
+            app:layout_constraintTop_toBottomOf="@+id/textViewFecha" />
+
+        <TextView
+            android:id="@+id/textViewTotalText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="5dp"
+            android:text="Total: "
             android:textSize="18sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textViewEstado" />
+            app:layout_constraintTop_toBottomOf="@+id/textViewSubtotalText" />
 
         <TextView
             android:id="@+id/textViewTotal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="56dp"
-            android:text="Total: "
+            android:layout_marginStart="33dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="249dp"
+            android:text="Total"
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/textViewTotalText"
             app:layout_constraintTop_toBottomOf="@+id/textViewSubtotal" />
+
+        <TextView
+            android:id="@+id/textViewUsuarioIdText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="5dp"
+            android:text="Cod. Usuario: "
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewTotalText" />
 
         <TextView
             android:id="@+id/textViewUsuarioId"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="Usuario ID: "
+            android:layout_marginStart="6dp"
+            android:layout_marginTop="5dp"
+            android:text="ID"
             android:textSize="18sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/textViewUsuarioIdText"
             app:layout_constraintTop_toBottomOf="@+id/textViewTotal" />
 
         <View
@@ -101,11 +150,13 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewProductos"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="383dp"
+            android:layout_height="193dp"
+            android:layout_marginTop="12dp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.428"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/view4" />
+            app:layout_constraintTop_toBottomOf="@+id/textViewUsuarioId" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

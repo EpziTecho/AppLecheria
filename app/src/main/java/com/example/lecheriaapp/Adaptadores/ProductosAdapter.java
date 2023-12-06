@@ -8,11 +8,15 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.core.view.ViewCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.lecheriaapp.Modelo.ProductoModel;
 import com.example.lecheriaapp.R;
+import com.google.android.material.shape.CornerFamily;
+import com.google.android.material.shape.MaterialShapeDrawable;
+import com.google.android.material.shape.ShapeAppearanceModel;
 
 import java.util.List;
 
@@ -45,8 +49,8 @@ public class ProductosAdapter extends RecyclerView.Adapter<ProductosAdapter.Prod
 
         // Resto del código para establecer otros datos en el ViewHolder
         holder.textViewNombreProducto.setText(producto.getNombre());
-        holder.textViewCantidad.setText("Cantidad: " + producto.getCantidad());
-        holder.textViewPrecio.setText("Precio: " + producto.getPrecio());
+        holder.textViewCantidad.setText("" + producto.getCantidad());
+        holder.textViewPrecio.setText("S/ " + producto.getPrecio());
     }
 
     @Override
@@ -67,6 +71,12 @@ public class ProductosAdapter extends RecyclerView.Adapter<ProductosAdapter.Prod
             imageViewProducto = itemView.findViewById(R.id.imageViewProducto);
             textViewCantidad = itemView.findViewById(R.id.textViewCantidad);
             textViewPrecio = itemView.findViewById(R.id.textViewPrecio);
+            ShapeAppearanceModel shapeAppearanceModel = new ShapeAppearanceModel()
+                    .toBuilder()
+                    .setAllCorners(CornerFamily.ROUNDED, 60)
+                    .build();
+            MaterialShapeDrawable shapeDrawable = new MaterialShapeDrawable(shapeAppearanceModel);
+            ViewCompat.setBackground(textViewCantidad, shapeDrawable);
         }
     }
 }

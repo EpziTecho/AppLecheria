@@ -135,7 +135,7 @@ public class CarritoReservaUsuarioPresenter {
                         }
                     }
                     // Si no se encontró una reserva temporal, puedes manejarlo aquí
-                    listener.onError("No se encontró una reserva temporal");
+                    listener.onError("No se encontró una reserva");
                 }
 
                 @Override
@@ -189,7 +189,7 @@ public class CarritoReservaUsuarioPresenter {
                         }
                     }
 
-                    listener.onError("No se encontró una reserva temporal");
+                    listener.onError("No se encontró una reserva");
                 }
 
                 @Override
@@ -256,7 +256,7 @@ public class CarritoReservaUsuarioPresenter {
                         }
                     });
                 } else {
-                    listener.onError("No se encontró una reserva temporal");
+                    listener.onError("No se encontró una reserva");
                 }
             }
 
@@ -385,7 +385,7 @@ public class CarritoReservaUsuarioPresenter {
                         }
                     }
                     // Si no se encontró una reserva temporal, puedes manejarlo aquí
-                    listener.onError("No se encontró una reserva temporal");
+                    listener.onError("No se encontró una reserva");
                 }
 
                 @Override
@@ -411,7 +411,7 @@ public class CarritoReservaUsuarioPresenter {
                         }
                     });
                 } else {
-                    listener.onError("No se encontró una reserva temporal");
+                    listener.onError("No se encontró una reserva");
                 }
             }
 

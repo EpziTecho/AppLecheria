@@ -139,19 +139,32 @@
             app:layout_constraintTop_toBottomOf="@+id/textViewUsuarioId"
             tools:layout_editor_absoluteX="16dp" />
 
-        <ImageView
-            android:id="@+id/imageViewQR"
-            android:layout_width="358dp"
-            android:layout_height="355dp"
+        <TextView
+            android:id="@+id/textView19"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="28dp"
+            android:textColor="#000000"
+            android:textSize="15sp"
+            android:text="Codigo QR"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.49"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/recyclerViewProductos" />
+
+        <ImageView
+            android:id="@+id/imageViewQR"
+            android:layout_width="264dp"
+            android:layout_height="279dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.496"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView19" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewProductos"
             android:layout_width="383dp"
-            android:layout_height="193dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.428"

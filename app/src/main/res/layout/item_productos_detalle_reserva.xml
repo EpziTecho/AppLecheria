@@ -11,25 +11,22 @@
         android:id="@+id/textViewNombreProducto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="48dp"
+        android:layout_marginStart="32dp"
         android:layout_marginTop="30dp"
-        android:layout_marginEnd="172dp"
         android:layout_marginBottom="55dp"
         android:paddingBottom="8dp"
         android:text="Producto"
         android:textSize="15sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/view6"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/imageViewProducto"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.958" />
 
     <TextView
         android:id="@+id/textViewPrecio"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="178dp"
         android:layout_marginTop="60dp"
         android:layout_marginEnd="14dp"
         android:layout_marginBottom="26dp"
@@ -39,9 +36,10 @@
         android:textStyle="normal"
         app:layout_constraintBottom_toTopOf="@+id/view6"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.187"
-        app:layout_constraintStart_toEndOf="@+id/imageViewProducto"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintHorizontal_bias="0.75"
+        app:layout_constraintStart_toEndOf="@+id/textViewNombreProducto"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/imageViewProducto"
@@ -50,8 +48,6 @@
         android:layout_marginTop="10dp"
         android:layout_marginBottom="5dp"
         app:layout_constraintBottom_toTopOf="@+id/view6"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.031"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:shapeAppearanceOverlay="@style/RoundedImageViewProd" />
@@ -61,8 +57,8 @@
         android:layout_width="30dp"
         android:layout_height="31dp"
         android:background="#000000"
-        android:paddingBottom="8dp"
-        android:text=""
+        android:paddingTop="3dp"
+        android:text="1"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
         android:textColorHint="#FFFFFF"

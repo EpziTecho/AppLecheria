@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -45,8 +45,8 @@
 
         <Spinner
             android:id="@+id/spinnerEstado"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="142dp"
+            android:layout_height="33dp"
             android:layout_marginStart="32dp"
             android:background="@drawable/spinner_background"
             app:layout_constraintStart_toStartOf="parent"
@@ -57,19 +57,19 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:layout_marginEnd="152dp"
+            android:layout_marginEnd="132dp"
             android:text="Cantidad"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/titleTextView" />
 
         <EditText
             android:id="@+id/textCantidad"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="146dp"
+            android:layout_height="35dp"
             android:background="@drawable/text_background"
-            app:layout_constraintEnd_toEndOf="parent"
             android:inputType="number"
-            app:layout_constraintHorizontal_bias="0.088"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.528"
             app:layout_constraintStart_toEndOf="@+id/spinnerEstado"
             app:layout_constraintTop_toBottomOf="@+id/tituloCantidad" />
 
@@ -263,4 +263,4 @@
 
 
 
-</ScrollView>
+</androidx.core.widget.NestedScrollView>

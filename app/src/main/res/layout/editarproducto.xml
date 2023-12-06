@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -45,11 +45,11 @@
 
         <Spinner
             android:id="@+id/spinnerEstado1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="133dp"
+            android:layout_height="36dp"
             android:background="@drawable/spinner_background"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.135"
+            app:layout_constraintHorizontal_bias="0.118"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tituloEstado1" />
 
@@ -58,19 +58,20 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:layout_marginEnd="144dp"
+            android:layout_marginEnd="124dp"
             android:text="Cantidad"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/titleTextView1" />
 
         <EditText
             android:id="@+id/textCantidad1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="142dp"
+            android:layout_height="36dp"
             android:layout_marginEnd="32dp"
-            android:inputType="number"
             android:background="@drawable/text_background"
+            android:inputType="number"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.915"
             app:layout_constraintStart_toEndOf="@+id/spinnerEstado1"
             app:layout_constraintTop_toBottomOf="@+id/tituloCantidad1" />
 
@@ -271,4 +272,4 @@
 
 
 
-</ScrollView>
+</androidx.core.widget.NestedScrollView>
